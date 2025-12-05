@@ -26,7 +26,7 @@
             --border-light: #F0EAE4;
             
             --container-width: 1140px;
-            --container-padding: clamp(24px, 6vw, 64px); /* Ajustado levemente para mobile pequeno */
+            --container-padding: clamp(24px, 6vw, 64px); 
             --section-gap: clamp(60px, 10vw, 140px);
             
             --radius-sm: 8px;
@@ -46,6 +46,8 @@
             line-height: 1.7;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            /* Padding top para compensar header fixo */
+            padding-top: 80px; 
         }
 
         h1, h2, h3, h4, .serif {
@@ -93,17 +95,23 @@
         }
         .btn-outline:hover { border-color: var(--text-display); background: var(--bg-card); }
 
-        /* --- 4. Header Otimizado Mobile --- */
+        /* --- 4. Header Fixo & Otimizado --- */
         .site-header {
-            padding: 20px 0;
-            position: absolute;
+            padding: 16px 0;
+            position: fixed; /* Header fixo */
             width: 100%;
             top: 0;
-            z-index: 50;
+            left: 0;
+            z-index: 100;
+            background: rgba(253, 251, 247, 0.85); /* Cor do fundo com transparência */
+            backdrop-filter: blur(12px); /* Efeito de vidro */
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
         }
         
         .header-inner { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 
+        /* LOGO PRESENTE SOCIAL (TEXTO) */
         .logo {
             font-family: 'Playfair Display', serif;
             font-size: 1.5rem;
@@ -113,21 +121,39 @@
             white-space: nowrap;
         }
         .logo span { color: var(--primary); font-style: italic; }
+        
+        .header-actions { display: flex; align-items: center; gap: 12px; }
+
+        .btn-icon-whatsapp {
+            width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        .btn-icon-whatsapp:hover { 
+            transform: scale(1.1); 
+            background: var(--primary);
+            color: #fff;
+            box-shadow: var(--shadow-soft);
+        }
+        .btn-icon-whatsapp svg { width: 22px; height: 22px; fill: currentColor; }
 
         /* --- 5. Hero & Typography Fix --- */
         .hero {
-            padding-top: 140px;
+            padding-top: 80px; /* Ajuste pois o header agora é fixo */
             padding-bottom: 60px;
             text-align: center;
             background: radial-gradient(circle at 50% 50%, #fff 0%, var(--bg-body) 70%);
         }
 
         .hero h1 {
-            /* MOBILE FIX: Reduzido tamanho mínimo para 2rem para caber melhor no celular */
             font-size: clamp(2rem, 5vw, 4.5rem); 
             margin-bottom: 24px;
             font-weight: 500;
-            line-height: 1.15; /* Entrelinha mais justa para títulos grandes */
+            line-height: 1.15; 
         }
         
         .hero h1 span { display: block; color: var(--primary); font-style: italic; }
@@ -165,7 +191,7 @@
         .step-item:hover { border-color: var(--accent); box-shadow: var(--shadow-soft); }
         .step-num { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--accent); line-height: 1; margin-bottom: 24px; font-style: italic; }
 
-        /* --- 7. Eventos (Principal) --- */
+        /* --- 7. Eventos --- */
         .community-section { background-color: #F8F5F2; padding-top: var(--section-gap); padding-bottom: var(--section-gap); }
         
         .event-card {
@@ -191,21 +217,20 @@
         .feature-icon { width: 60px; height: 60px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; color: var(--text-display); }
         .feature-icon svg { width: 28px; height: 28px; fill: currentColor; }
 
-        /* --- 9. Modal Refinado --- */
+        /* --- 9. Modals --- */
         .modal-overlay {
             position: fixed; inset: 0;
             background: rgba(44, 40, 37, 0.6); backdrop-filter: blur(8px);
             z-index: 1000;
             display: flex; align-items: center; justify-content: center;
             opacity: 0; pointer-events: none; transition: 0.4s ease;
-            padding: 20px; /* Segurança para mobile */
+            padding: 20px; 
         }
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
 
         .modal-content {
             background: #fff;
             width: 100%; max-width: 500px;
-            /* MOBILE FIX: Limitar altura e permitir scroll interno */
             max-height: 85vh; 
             overflow-y: auto;
             padding: 32px;
@@ -215,7 +240,6 @@
         }
         .modal-overlay.active .modal-content { transform: scale(1); }
 
-        /* --- Estilo Compacto para Modal --- */
         .event-card-compact {
             display: flex; align-items: center; gap: 16px;
             padding: 16px;
@@ -230,26 +254,78 @@
         .event-card-compact .event-meta { font-size: 0.8rem; margin-bottom: 6px; }
         .event-card-compact .btn-sm { padding: 6px 14px; font-size: 0.75rem; }
 
-        footer { padding: 60px 0; border-top: 1px solid var(--border-light); text-align: center; font-size: 0.9rem; }
+        /* --- Modal Contato Específico --- */
+        .contact-options { display: grid; gap: 16px; margin-top: 24px; }
+        .btn-contact-opt {
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            width: 100%; padding: 16px;
+            border-radius: 12px;
+            font-weight: 600; font-size: 1rem;
+            transition: 0.2s;
+        }
+        .btn-contact-whatsapp { background: #25D366; color: #fff; }
+        .btn-contact-whatsapp:hover { background: #1ebc57; }
+        .btn-contact-call { background: var(--surface-200); border: 1px solid var(--border-light); color: var(--text-display); }
+        .btn-contact-call:hover { background: #eee; }
 
-        /* --- MOBILE OPTIMIZATIONS (Specific) --- */
+        /* --- Footer --- */
+        footer { 
+            background: #fff; 
+            border-top: 1px solid var(--border-light); 
+            padding-top: 80px; padding-bottom: 40px; 
+            font-size: 0.95rem; color: var(--text-body);
+        }
+        
+        .footer-grid {
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 16px;
+            object-fit: cover;
+            border: 1px solid var(--border-light);
+        }
+        
+        .footer-brand h4 { font-size: 1.5rem; margin-bottom: 16px; }
+        .footer-brand p { max-width: 400px; margin-bottom: 24px; color: var(--text-muted); }
+        
+        .footer-info h5 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); margin-bottom: 16px; font-weight: 700; }
+        .footer-links { display: flex; flex-direction: column; gap: 12px; }
+        .footer-links a { display: inline-flex; align-items: center; gap: 8px; transition: 0.2s; }
+        .footer-links a:hover { color: var(--primary); transform: translateX(4px); }
+
+        .footer-bottom { 
+            border-top: 1px solid var(--border-light); 
+            padding-top: 32px; 
+            text-align: center; 
+            font-size: 0.85rem; color: var(--text-muted); 
+        }
+
+        /* --- MOBILE OPTIMIZATIONS --- */
         @media (max-width: 768px) {
-            /* Ajustes Finos Header */
-            .logo { font-size: 1.25rem; } /* Logo menor */
+            .site-header { padding: 12px 0; }
+            .logo { font-size: 1.25rem; } 
             
             .btn-outline { 
                 padding: 8px 16px; 
                 font-size: 0.8rem; 
-                /* Garantir visibilidade elegante */
                 background: rgba(255, 255, 255, 0.85); 
                 border-color: #e5e5e5;
                 box-shadow: 0 2px 10px rgba(0,0,0,0.03);
             }
+            .btn-icon-whatsapp { width: 36px; height: 36px; }
+            .btn-icon-whatsapp svg { width: 18px; height: 18px; }
 
             .container { padding-left: var(--container-padding) !important; padding-right: var(--container-padding) !important; }
-            .feature-row { grid-template-columns: 1fr; gap: 56px; text-align: left; }
+            .feature-row, .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: left; }
             .feature-row > div:nth-child(2) { order: -1; }
-            .hero { padding-top: 100px; } /* Menos espaço topo */
+            .hero { padding-top: 60px; } 
             .event-card { flex-direction: column; text-align: center; padding: 32px 24px; }
             .step-item { padding: 32px 24px; }
             .video-frame { border-radius: 40px; border-width: 4px; width: 100%; }
@@ -258,12 +334,22 @@
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- Header Fixo -->
     <header class="site-header">
         <div class="container header-inner">
-            <div class="logo">presente<span>.social</span></div>
-            <!-- Botão com estilo mais discreto no mobile via CSS -->
-            <button onclick="openModal()" class="btn-outline btn">Já tenho evento</button>
+            <div class="logo">
+                presente<span>.social</span>
+            </div>
+            
+            <div class="header-actions">
+                <!-- Botão Já tenho evento -->
+                <button onclick="openModal('modal-events')" class="btn-outline btn">Já tenho evento</button>
+                
+                <!-- Botão Whatsapp Discreto -->
+                <button onclick="openModal('modal-contact')" class="btn-icon-whatsapp" aria-label="Falar no WhatsApp">
+                    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -275,7 +361,7 @@
                 <p>Transforme celebrações em impacto real. A elegância de doar, simplificada pela Dona Antônia.</p>
                 
                 <div style="margin-bottom: 60px;">
-                    <a href="https://wa.me/5565998150975?text=Ola,%20quero%20criar%20meu%20evento%20solidario" target="_blank" class="btn btn-primary">
+                    <a href="https://wa.me/5565998150975?text=Olá, eu gostaria de falar sobre o Presente.Social." target="_blank" class="btn btn-primary">
                         Começar minha Campanha
                     </a>
                 </div>
@@ -367,7 +453,7 @@
                 <p style="color: #ccc; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto;">
                     Fale com nossa equipe de concierge social e configure seu evento hoje mesmo.
                 </p>
-                <a href="https://wa.me/5565998150975" target="_blank" class="btn" style="background: #fff; color: var(--text-display);">
+                <a href="https://wa.me/5565998150975?text=Olá, eu gostaria de falar sobre o Presente.Social." target="_blank" class="btn" style="background: #fff; color: var(--text-display);">
                     Falar no WhatsApp
                 </a>
             </div>
@@ -387,6 +473,33 @@
         </div>
     </div>
 
+    <!-- Modal Contato -->
+    <div id="modal-contact" class="modal-overlay">
+        <div class="modal-content" style="max-width: 400px; text-align: center;">
+            <div style="display:flex; justify-content:flex-end;">
+                <button onclick="closeModal('modal-contact')" style="font-size:1.5rem; line-height:1;">&times;</button>
+            </div>
+            <div style="margin-bottom: 24px;">
+                <div style="width: 60px; height: 60px; background: #E8D4C5; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+                   <svg viewBox="0 0 24 24" width="30" height="30" fill="var(--primary)"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+                </div>
+                <h3 class="serif">Fale Conosco</h3>
+                <p style="color: var(--text-body); font-size: 0.95rem;">Estamos prontos para ajudar você a criar seu evento solidário.</p>
+            </div>
+            
+            <div class="contact-options">
+                <a href="https://wa.me/5565998150975?text=Olá, eu gostaria de falar sobre o Presente.Social." target="_blank" class="btn-contact-opt btn-contact-whatsapp">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    Enviar Mensagem
+                </a>
+                <a href="tel:+5565998150975" class="btn-contact-opt btn-contact-call">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" style="margin-right:8px"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    Ligar (65) 99815-0975
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal Video -->
     <div id="modal-video-testimonial" class="modal-overlay">
         <div class="modal-content" style="max-width: 800px; background: #000; padding:0; overflow:hidden;">
@@ -399,44 +512,46 @@
         </div>
     </div>
 
+    <!-- Footer Institucional -->
     <footer>
         <div class="container">
-            <p style="color: var(--text-muted);">Operado por <strong>Super Cestas Dona Antônia</strong></p>
-            <p style="margin-top: 8px; font-size: 0.8rem; opacity: 0.6;">Cuiabá - MT • CNPJ XX.XXX.XXX/0001-XX</p>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="icon-512.jpg" alt="Logo Dona Antônia" class="footer-logo">
+                    <h4 class="serif">Super Cestas <br>Dona Antônia</h4>
+                    <p>Há 8 anos no mercado, referência em cestas básicas para varejo e empresas. Qualidade e compromisso que alimentam famílias.</p>
+                    <p style="font-size: 0.85rem; margin-bottom: 8px;"><strong>Cuiabá - MT</strong></p>
+                    <p style="font-size: 0.85rem;">CNPJ: Consulte via atendimento</p>
+                </div>
+                
+                <div class="footer-info">
+                    <h5>Saiba Mais</h5>
+                    <div class="footer-links">
+                        <a href="https://donaantonia.com.br/" target="_blank">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                            Visite nosso Site Oficial
+                        </a>
+                        <a href="https://www.instagram.com/super.cestas.dona.antonia/" target="_blank">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                            Siga no Instagram
+                        </a>
+                        <a href="https://wa.me/5565998150975" target="_blank">
+                             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                             Falar com Atendimento
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Presente Social - Uma iniciativa Super Cestas Dona Antônia.</p>
+            </div>
         </div>
     </footer>
 
     <!-- Scripts -->
     <script>
-        /* --- DEFINIÇÃO DO FORMATO JSON (data/eventos.json) ---
-           
-           O arquivo JSON deve seguir exatamente este array de objetos.
-           Campos obrigatórios: id, name, date, goal, photo, link.
-           Campos opcionais: achieved (se encerrado), youtubeId (se tiver depoimento).
-           
-           [
-               {
-                   "id": "evt-001",
-                   "name": "Elisabet Aguirre",
-                   "date": "2025-12-13",
-                   "goal": 30,
-                   "photo": "https://url-da-imagem.com/foto.jpg",
-                   "link": "/evento/elisabet"
-               },
-               {
-                   "id": "evt-002",
-                   "name": "Noemi",
-                   "date": "2024-11-28",
-                   "goal": 20,
-                   "achieved": 26,
-                   "photo": "https://url-da-imagem.com/foto2.jpg",
-                   "link": "/evento/noemi",
-                   "youtubeId": "dQw4w9WgXcQ"
-               }
-           ]
-        */
-
-        // Simulação do Fetch de Dados
+        /* --- DEFINIÇÃO DO FORMATO JSON (data/eventos.json) --- */
         const mockData = [
             { 
                 id: "1", name: "Elisabet Aguirre", date: "2025-12-13", goal: 30, 
@@ -449,37 +564,27 @@
             { 
                 id: "3", name: "João Silva", date: "2023-01-01", goal: 10, achieved: 10, 
                 photo: "https://placehold.co/150x150/cccccc/ffffff?text=JS", link: "#"
-            } // Este evento antigo não deve aparecer
+            }
         ];
 
         let activeEvents = [];
         let displayedCount = 0;
         const itemsPerPage = 3; 
 
-        // Filtra eventos que encerraram há mais de 60 dias
         function filterValidEvents(events) {
             const today = new Date();
             today.setHours(0,0,0,0);
-            
             return events.filter(evt => {
                 const eventDate = new Date(evt.date);
-                // Data limite = Data do evento + 60 dias
                 const limitDate = new Date(eventDate);
                 limitDate.setDate(limitDate.getDate() + 60);
-                
-                // Se hoje for maior que a data limite, o evento expirou da lista
                 return today <= limitDate;
             });
         }
 
         async function initEvents() {
-            // Em produção: const response = await fetch('data/eventos.json');
-            // const data = await response.json();
-            const data = mockData; // Usando mock por enquanto
-            
+            const data = mockData; 
             activeEvents = filterValidEvents(data);
-            
-            // Renderiza inicial
             loadMoreEvents();
         }
 
@@ -487,7 +592,7 @@
             const eventDate = new Date(eventDateString);
             const today = new Date();
             const toleranceDate = new Date(eventDate);
-            toleranceDate.setDate(eventDate.getDate() + 3); // Tolerância de 3 dias ativo após data
+            toleranceDate.setDate(eventDate.getDate() + 3);
             today.setHours(0,0,0,0);
             toleranceDate.setHours(0,0,0,0);
             return today <= toleranceDate ? 'active' : 'expired';
@@ -498,11 +603,9 @@
             return date.toLocaleDateString('pt-BR', { day: 'numeric', month: 'short', year: 'numeric' });
         }
 
-        // Gera HTML normal (para a página principal)
         function createEventCardHTML(event) {
             const status = checkStatus(event.date);
             const isExpired = status === 'expired';
-            
             let actionBtn = '';
             let metaInfo = `<span class="event-meta">Meta: ${event.goal} cestas</span>`;
 
@@ -518,7 +621,6 @@
                     actionBtn = `<button class="btn-sm disabled" disabled>Encerrado</button>`;
                 }
             }
-
             return `
                 <div class="event-card">
                     <img src="${event.photo}" alt="${event.name}" class="event-photo">
@@ -532,11 +634,9 @@
             `;
         }
 
-        // Gera HTML compacto (para o modal mobile)
         function createCompactEventCardHTML(event) {
             const status = checkStatus(event.date);
             const isExpired = status === 'expired';
-            
             let actionBtn = '';
             
             if (!isExpired) {
@@ -544,7 +644,6 @@
             } else if (event.youtubeId) {
                 actionBtn = `<button onclick="openVideoModal('${event.youtubeId}')" class="btn-sm btn-outline" style="padding:4px 10px;">▶</button>`;
             }
-
             return `
                 <div class="event-card-compact">
                     <img src="${event.photo}" alt="${event.name}" class="event-photo">
@@ -569,11 +668,9 @@
                 btn.style.display = 'none';
                 return;
             }
-
             nextBatch.forEach(event => {
                 container.innerHTML += createEventCardHTML(event);
             });
-
             displayedCount += nextBatch.length;
             if (displayedCount >= activeEvents.length) {
                 btn.style.display = 'none';
@@ -583,21 +680,19 @@
         function renderEventsInModal() {
             const container = document.getElementById('modal-events-container');
             container.innerHTML = '';
-            
             const sorted = [...activeEvents].sort((a, b) => {
                 const sA = checkStatus(a.date);
                 const sB = checkStatus(b.date);
                 return sA === 'active' ? -1 : 1;
             });
-
             sorted.forEach(evt => {
                 container.innerHTML += createCompactEventCardHTML(evt);
             });
         }
 
-        function openModal() {
-            renderEventsInModal();
-            document.getElementById('modal-events').classList.add('active');
+        function openModal(modalId) {
+            if (modalId === 'modal-events') renderEventsInModal();
+            document.getElementById(modalId).classList.add('active');
         }
         function closeModal(id) {
             document.getElementById(id).classList.remove('active');
@@ -618,14 +713,12 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            initEvents(); // Inicia com filtro de data
-
+            initEvents();
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) entry.target.classList.add('active');
                 });
             }, { threshold: 0.1 });
-
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         });
     </script>
