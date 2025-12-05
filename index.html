@@ -31,7 +31,8 @@
             
             /* Espaçamentos e Layout */
             --container-width: 1140px;
-            --container-padding: clamp(24px, 6vw, 48px);
+            /* MOBILE FIX: Mantendo o respiro lateral generoso */
+            --container-padding: clamp(32px, 8vw, 64px);
             --section-gap: clamp(80px, 10vw, 140px);
             
             /* Efeitos */
@@ -71,7 +72,10 @@
         /* Utilitários */
         .container { 
             width: 100%; max-width: var(--container-width); 
-            margin: 0 auto; padding: 0 var(--container-padding); 
+            margin: 0 auto; 
+            /* Esta regra é sagrada. Nada deve sobrescrevê-la com padding: 0 lateral */
+            padding-left: var(--container-padding);
+            padding-right: var(--container-padding);
         }
         
         .text-center { text-align: center; }
@@ -102,7 +106,7 @@
         }
         
         .btn-primary {
-            background-color: var(--text-display); /* Preto suave é mais chique que a cor primária as vezes */
+            background-color: var(--text-display); 
             color: #fff;
         }
         .btn-primary:hover {
@@ -124,7 +128,7 @@
         /* --- 4. Header Minimalista --- */
         .site-header {
             padding: 24px 0;
-            position: absolute; /* Header transparente sobre o hero */
+            position: absolute;
             width: 100%;
             top: 0;
             z-index: 50;
@@ -172,7 +176,7 @@
             position: relative;
             max-width: 300px;
             margin: 0 auto;
-            border-radius: 160px 160px 0 0; /* Forma de arco/janela */
+            border-radius: 160px 160px 0 0;
             overflow: hidden;
             box-shadow: var(--shadow-hover);
             border: 8px solid #fff;
@@ -187,7 +191,11 @@
         }
 
         /* --- 6. Passos (Minimalismo) --- */
-        .steps-section { padding: var(--section-gap) 0; }
+        /* CORREÇÃO: Usar padding-top/bottom para não matar o padding lateral do container */
+        .steps-section { 
+            padding-top: var(--section-gap);
+            padding-bottom: var(--section-gap);
+        }
 
         .section-label {
             text-transform: uppercase;
@@ -228,9 +236,11 @@
         }
 
         /* --- 7. Eventos (Card Sofisticado) --- */
+        /* CORREÇÃO: Usar padding-top/bottom apenas */
         .community-section {
-            background-color: #F8F5F2; /* Tom ligeiramente mais escuro que o body */
-            padding: var(--section-gap) 0;
+            background-color: #F8F5F2; 
+            padding-top: var(--section-gap);
+            padding-bottom: var(--section-gap);
         }
 
         .event-card {
@@ -273,8 +283,10 @@
         .btn-sm.disabled { background: #eee; color: #aaa; cursor: default; }
 
         /* --- 8. Features (Layout Alternado) --- */
+        /* CORREÇÃO: Usar padding-top/bottom apenas */
         .feature-block {
-            padding: var(--section-gap) 0;
+            padding-top: var(--section-gap);
+            padding-bottom: var(--section-gap);
         }
         
         .feature-row {
@@ -326,12 +338,39 @@
             font-size: 0.9rem;
         }
 
-        /* Responsividade */
+        /* Responsividade Profissional */
         @media (max-width: 768px) {
-            .feature-row { grid-template-columns: 1fr; gap: 40px; text-align: left; }
+            /* Fix para o container não perder padding */
+            .container {
+                padding-left: var(--container-padding) !important;
+                padding-right: var(--container-padding) !important;
+            }
+
+            .feature-row { 
+                grid-template-columns: 1fr; 
+                gap: 56px; 
+                text-align: left; 
+            }
+
+            .feature-row > div:nth-child(2) { order: -1; }
+
             .hero { padding-top: 120px; }
-            .event-card { flex-direction: column; text-align: center; padding: 24px 16px; }
-            .video-frame { border-radius: 40px; border-width: 4px; }
+            
+            .event-card { 
+                flex-direction: column; 
+                text-align: center; 
+                padding: 32px 24px;
+            }
+
+            .step-item {
+                padding: 32px 24px;
+            }
+
+            .video-frame { 
+                border-radius: 40px; 
+                border-width: 4px; 
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -414,7 +453,7 @@
             </div>
         </section>
 
-        <!-- Diferenciais (Layout Zig-Zag para leitura fluida) -->
+        <!-- Diferenciais (Layout Zig-Zag) -->
         <section class="feature-block container">
             <div class="feature-row reveal">
                 <div>
@@ -425,7 +464,6 @@
                     <p>A confiança é nossa prioridade. Cada doação é rastreada e documentada com fotos e recibos entregues diretamente aos doadores e ao aniversariante.</p>
                 </div>
                 <div style="background: #F0EAE4; height: 300px; border-radius: var(--radius-md);">
-                    <!-- Placeholder visual ou imagem ilustrativa -->
                     <img src="https://placehold.co/600x400/F0EAE4/A98467?text=Foto+Entrega" alt="Transparência" style="width:100%; height:100%; object-fit:cover; border-radius: var(--radius-md); opacity: 0.8;">
                 </div>
             </div>
@@ -434,7 +472,7 @@
                 <div style="background: #E8D4C5; height: 300px; border-radius: var(--radius-md); order: 2;">
                      <img src="https://placehold.co/600x400/E8D4C5/A98467?text=Logistica" alt="Logística" style="width:100%; height:100%; object-fit:cover; border-radius: var(--radius-md); opacity: 0.8;">
                 </div>
-                <div style="order: 1;"> <!-- No mobile isso ajusta automaticamente se usar flex column, aqui grid precisa de media query se quiser inverter ordem visual -->
+                <div style="order: 1;">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
                     </div>
@@ -445,7 +483,8 @@
         </section>
 
         <!-- CTA Final -->
-        <section class="container reveal" style="text-align: center; padding: 0 0 100px;">
+        <!-- CORREÇÃO: Removido inline style que zerava o padding lateral -->
+        <section class="container reveal" style="text-align: center; padding-bottom: 100px;">
             <div style="background: var(--text-display); color: #fff; padding: 60px 20px; border-radius: var(--radius-md);">
                 <h2 style="color: #fff; margin-bottom: 24px;">Inicie seu legado de solidariedade</h2>
                 <p style="color: #ccc; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto;">
