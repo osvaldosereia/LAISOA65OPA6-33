@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#D4A373">
     <title>Presente Social - Celebre com Propósito</title>
 
-    <!-- Fontes Premium: Playfair Display (Serifa/Elegância) + DM Sans (Leitura/Moderna) -->
+    <!-- Fontes Premium -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -15,27 +15,20 @@
     <style>
         /* --- 1. Design System & Variáveis --- */
         :root {
-            /* Paleta 'Organic Luxury' */
-            --primary: #A98467;        /* Castanho Suave / Terracota */
-            --primary-dark: #8C6A54;   /* Variação escura para hover */
-            --accent: #E8D4C5;         /* Bege areia para fundos de destaque */
-            
-            --bg-body: #FDFBF7;        /* Off-white quente (papel) */
+            --primary: #A98467;
+            --primary-dark: #8C6A54;
+            --accent: #E8D4C5;
+            --bg-body: #FDFBF7;
             --bg-card: #FFFFFF;
-            
-            --text-display: #2C2825;   /* Quase preto, mas mais suave */
-            --text-body: #5E5854;      /* Cinza quente */
+            --text-display: #2C2825;
+            --text-body: #5E5854;
             --text-muted: #9E9690;
-            
             --border-light: #F0EAE4;
             
-            /* Espaçamentos e Layout */
             --container-width: 1140px;
-            /* MOBILE FIX: Mantendo o respiro lateral generoso */
-            --container-padding: clamp(32px, 8vw, 64px);
-            --section-gap: clamp(80px, 10vw, 140px);
+            --container-padding: clamp(24px, 6vw, 64px); /* Ajustado levemente para mobile pequeno */
+            --section-gap: clamp(60px, 10vw, 140px);
             
-            /* Efeitos */
             --radius-sm: 8px;
             --radius-md: 24px;
             --shadow-soft: 0 10px 40px -10px rgba(169, 132, 103, 0.1);
@@ -45,9 +38,7 @@
 
         /* --- 2. Reset & Base --- */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        
         html { scroll-behavior: smooth; }
-        
         body { 
             font-family: 'DM Sans', sans-serif; 
             background-color: var(--bg-body);
@@ -69,32 +60,18 @@
         button { border: none; background: none; cursor: pointer; font-family: inherit; }
         ul { list-style: none; }
 
-        /* Utilitários */
         .container { 
             width: 100%; max-width: var(--container-width); 
             margin: 0 auto; 
-            /* Esta regra é sagrada. Nada deve sobrescrevê-la com padding: 0 lateral */
             padding-left: var(--container-padding);
             padding-right: var(--container-padding);
         }
         
         .text-center { text-align: center; }
-        .hidden { display: none !important; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Animações de Entrada (Scroll Reveal) */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- 3. Componentes de UI --- */
-        
-        /* Botões Refinados */
+        /* --- 3. Componentes UI --- */
         .btn {
             display: inline-flex; align-items: center; justify-content: center;
             padding: 14px 32px;
@@ -105,73 +82,64 @@
             transition: var(--transition);
         }
         
-        .btn-primary {
-            background-color: var(--text-display); 
-            color: #fff;
-        }
-        .btn-primary:hover {
-            background-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-soft);
-        }
+        .btn-primary { background-color: var(--text-display); color: #fff; }
+        .btn-primary:hover { background-color: var(--primary); transform: translateY(-2px); box-shadow: var(--shadow-soft); }
 
         .btn-outline {
             border: 1px solid var(--border-light);
             color: var(--text-display);
-            background: transparent;
+            background: rgba(255,255,255,0.5); /* Glass sutil */
+            backdrop-filter: blur(4px);
         }
-        .btn-outline:hover {
-            border-color: var(--text-display);
-            background: var(--bg-card);
-        }
+        .btn-outline:hover { border-color: var(--text-display); background: var(--bg-card); }
 
-        /* --- 4. Header Minimalista --- */
+        /* --- 4. Header Otimizado Mobile --- */
         .site-header {
-            padding: 24px 0;
+            padding: 20px 0;
             position: absolute;
             width: 100%;
             top: 0;
             z-index: 50;
         }
         
+        .header-inner { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+
         .logo {
             font-family: 'Playfair Display', serif;
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--text-display);
             letter-spacing: -0.03em;
+            white-space: nowrap;
         }
         .logo span { color: var(--primary); font-style: italic; }
 
-        /* --- 5. Hero Section (Estilo Editorial) --- */
+        /* --- 5. Hero & Typography Fix --- */
         .hero {
-            padding-top: 160px;
-            padding-bottom: 80px;
+            padding-top: 140px;
+            padding-bottom: 60px;
             text-align: center;
             background: radial-gradient(circle at 50% 50%, #fff 0%, var(--bg-body) 70%);
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            /* MOBILE FIX: Reduzido tamanho mínimo para 2rem para caber melhor no celular */
+            font-size: clamp(2rem, 5vw, 4.5rem); 
             margin-bottom: 24px;
             font-weight: 500;
+            line-height: 1.15; /* Entrelinha mais justa para títulos grandes */
         }
         
-        .hero h1 span {
-            display: block;
-            color: var(--primary);
-            font-style: italic;
-        }
+        .hero h1 span { display: block; color: var(--primary); font-style: italic; }
 
         .hero p {
-            font-size: clamp(1.1rem, 2vw, 1.25rem);
+            font-size: clamp(1rem, 2vw, 1.25rem);
             max-width: 580px;
             margin: 0 auto 48px;
             color: var(--text-body);
             font-weight: 400;
         }
 
-        /* Mockup Delicado */
         .video-frame {
             position: relative;
             max-width: 300px;
@@ -185,192 +153,106 @@
             transition: var(--transition);
         }
         .video-frame:hover { transform: translateY(-10px); }
+        .video-frame video { width: 100%; height: 100%; object-fit: cover; }
+
+        /* --- 6. Passos --- */
+        .steps-section { padding-top: var(--section-gap); padding-bottom: var(--section-gap); }
+        .section-label { text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.75rem; font-weight: 700; color: var(--primary); margin-bottom: 16px; display: block; }
         
-        .video-frame video {
-            width: 100%; height: 100%; object-fit: cover;
-        }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 60px; }
+        
+        .step-item { padding: 40px 32px; background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius-md); transition: var(--transition); }
+        .step-item:hover { border-color: var(--accent); box-shadow: var(--shadow-soft); }
+        .step-num { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--accent); line-height: 1; margin-bottom: 24px; font-style: italic; }
 
-        /* --- 6. Passos (Minimalismo) --- */
-        /* CORREÇÃO: Usar padding-top/bottom para não matar o padding lateral do container */
-        .steps-section { 
-            padding-top: var(--section-gap);
-            padding-bottom: var(--section-gap);
-        }
-
-        .section-label {
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 16px;
-            display: block;
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
-        }
-
-        .step-item {
-            padding: 40px 32px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-md);
-            transition: var(--transition);
-        }
-        .step-item:hover {
-            border-color: var(--accent);
-            box-shadow: var(--shadow-soft);
-        }
-
-        .step-num {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            color: var(--accent);
-            line-height: 1;
-            margin-bottom: 24px;
-            font-style: italic;
-        }
-
-        /* --- 7. Eventos (Card Sofisticado) --- */
-        /* CORREÇÃO: Usar padding-top/bottom apenas */
-        .community-section {
-            background-color: #F8F5F2; 
-            padding-top: var(--section-gap);
-            padding-bottom: var(--section-gap);
-        }
-
+        /* --- 7. Eventos (Principal) --- */
+        .community-section { background-color: #F8F5F2; padding-top: var(--section-gap); padding-bottom: var(--section-gap); }
+        
         .event-card {
-            background: #fff;
-            padding: 24px;
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            border: 1px solid transparent;
-            transition: var(--transition);
+            background: #fff; padding: 24px; border-radius: var(--radius-md);
+            display: flex; align-items: center; gap: 20px;
+            border: 1px solid transparent; transition: var(--transition);
         }
-        .event-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-soft);
-        }
-
-        .event-photo {
-            width: 80px; height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--bg-body);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-
+        .event-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: var(--shadow-soft); }
+        
+        .event-photo { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid var(--bg-body); }
         .event-details h4 { font-size: 1.25rem; margin-bottom: 4px; }
         .event-meta { font-size: 0.9rem; color: var(--primary); margin-bottom: 12px; display: block; }
-        
-        .btn-sm {
-            padding: 8px 20px;
-            font-size: 0.85rem;
-            border-radius: 50px;
-            background: var(--accent);
-            color: var(--text-display);
-            font-weight: 600;
-            transition: 0.2s;
-        }
+
+        .btn-sm { padding: 8px 20px; font-size: 0.85rem; border-radius: 50px; background: var(--accent); color: var(--text-display); font-weight: 600; transition: 0.2s; }
         .btn-sm:hover { background: var(--primary); color: #fff; }
         .btn-sm.disabled { background: #eee; color: #aaa; cursor: default; }
 
-        /* --- 8. Features (Layout Alternado) --- */
-        /* CORREÇÃO: Usar padding-top/bottom apenas */
-        .feature-block {
-            padding-top: var(--section-gap);
-            padding-bottom: var(--section-gap);
-        }
-        
-        .feature-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: clamp(40px, 8vw, 100px);
-            align-items: center;
-            margin-bottom: 80px;
-        }
-        
+        /* --- 8. Features --- */
+        .feature-block { padding-top: var(--section-gap); padding-bottom: var(--section-gap); }
+        .feature-row { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 8vw, 100px); align-items: center; margin-bottom: 80px; }
         .feature-text h3 { font-size: 2rem; margin-bottom: 20px; }
         .feature-text p { font-size: 1.1rem; color: var(--text-body); }
-        
-        .feature-icon {
-            width: 60px; height: 60px;
-            background: var(--accent);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            margin-bottom: 24px;
-            color: var(--text-display);
-        }
+        .feature-icon { width: 60px; height: 60px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; color: var(--text-display); }
         .feature-icon svg { width: 28px; height: 28px; fill: currentColor; }
 
-        /* --- 9. Modals e Footer --- */
+        /* --- 9. Modal Refinado --- */
         .modal-overlay {
             position: fixed; inset: 0;
-            background: rgba(44, 40, 37, 0.4);
-            backdrop-filter: blur(8px);
+            background: rgba(44, 40, 37, 0.6); backdrop-filter: blur(8px);
             z-index: 1000;
             display: flex; align-items: center; justify-content: center;
             opacity: 0; pointer-events: none; transition: 0.4s ease;
+            padding: 20px; /* Segurança para mobile */
         }
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
 
         .modal-content {
             background: #fff;
-            width: 90%; max-width: 500px;
-            padding: 40px;
+            width: 100%; max-width: 500px;
+            /* MOBILE FIX: Limitar altura e permitir scroll interno */
+            max-height: 85vh; 
+            overflow-y: auto;
+            padding: 32px;
             border-radius: var(--radius-md);
             box-shadow: var(--shadow-hover);
             transform: scale(0.95); transition: 0.4s ease;
         }
         .modal-overlay.active .modal-content { transform: scale(1); }
 
-        footer {
-            padding: 60px 0;
-            border-top: 1px solid var(--border-light);
-            text-align: center;
-            font-size: 0.9rem;
+        /* --- Estilo Compacto para Modal --- */
+        .event-card-compact {
+            display: flex; align-items: center; gap: 16px;
+            padding: 16px;
+            border-bottom: 1px solid var(--border-light);
+            transition: 0.2s;
         }
+        .event-card-compact:last-child { border-bottom: none; }
+        .event-card-compact:hover { background: var(--bg-body); border-radius: 8px; }
+        
+        .event-card-compact .event-photo { width: 48px; height: 48px; border-width: 2px; }
+        .event-card-compact h4 { font-size: 1rem; margin-bottom: 2px; }
+        .event-card-compact .event-meta { font-size: 0.8rem; margin-bottom: 6px; }
+        .event-card-compact .btn-sm { padding: 6px 14px; font-size: 0.75rem; }
 
-        /* Responsividade Profissional */
+        footer { padding: 60px 0; border-top: 1px solid var(--border-light); text-align: center; font-size: 0.9rem; }
+
+        /* --- MOBILE OPTIMIZATIONS (Specific) --- */
         @media (max-width: 768px) {
-            /* Fix para o container não perder padding */
-            .container {
-                padding-left: var(--container-padding) !important;
-                padding-right: var(--container-padding) !important;
-            }
-
-            .feature-row { 
-                grid-template-columns: 1fr; 
-                gap: 56px; 
-                text-align: left; 
-            }
-
-            .feature-row > div:nth-child(2) { order: -1; }
-
-            .hero { padding-top: 120px; }
+            /* Ajustes Finos Header */
+            .logo { font-size: 1.25rem; } /* Logo menor */
             
-            .event-card { 
-                flex-direction: column; 
-                text-align: center; 
-                padding: 32px 24px;
+            .btn-outline { 
+                padding: 8px 16px; 
+                font-size: 0.8rem; 
+                /* Garantir visibilidade elegante */
+                background: rgba(255, 255, 255, 0.85); 
+                border-color: #e5e5e5;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.03);
             }
 
-            .step-item {
-                padding: 32px 24px;
-            }
-
-            .video-frame { 
-                border-radius: 40px; 
-                border-width: 4px; 
-                width: 100%;
-            }
+            .container { padding-left: var(--container-padding) !important; padding-right: var(--container-padding) !important; }
+            .feature-row { grid-template-columns: 1fr; gap: 56px; text-align: left; }
+            .feature-row > div:nth-child(2) { order: -1; }
+            .hero { padding-top: 100px; } /* Menos espaço topo */
+            .event-card { flex-direction: column; text-align: center; padding: 32px 24px; }
+            .step-item { padding: 32px 24px; }
+            .video-frame { border-radius: 40px; border-width: 4px; width: 100%; }
         }
     </style>
 </head>
@@ -378,8 +260,9 @@
 
     <!-- Header -->
     <header class="site-header">
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+        <div class="container header-inner">
             <div class="logo">presente<span>.social</span></div>
+            <!-- Botão com estilo mais discreto no mobile via CSS -->
             <button onclick="openModal()" class="btn-outline btn">Já tenho evento</button>
         </div>
     </header>
@@ -397,7 +280,6 @@
                     </a>
                 </div>
 
-                <!-- Video Frame - Design "Janela" -->
                 <div class="video-frame">
                     <video controls playsinline poster="https://placehold.co/450x800/E8D4C5/2C2825?text=Video+Capa">
                         <source src="video/videosite.MP4" type="video/mp4">
@@ -407,7 +289,7 @@
             </div>
         </section>
 
-        <!-- Como Funciona -->
+        <!-- Passos -->
         <section class="steps-section container">
             <div class="text-center reveal">
                 <span class="section-label">O Processo</span>
@@ -433,7 +315,7 @@
             </div>
         </section>
 
-        <!-- Comunidade / Eventos -->
+        <!-- Eventos -->
         <section class="community-section">
             <div class="container">
                 <div class="text-center reveal" style="margin-bottom: 50px;">
@@ -442,7 +324,7 @@
                 </div>
                 
                 <div id="page-events-container" class="grid-3 reveal">
-                    <!-- Eventos renderizados via JS -->
+                    <!-- JS -->
                 </div>
                 
                 <div class="text-center" style="margin-top: 40px;">
@@ -453,15 +335,13 @@
             </div>
         </section>
 
-        <!-- Diferenciais (Layout Zig-Zag) -->
+        <!-- Features -->
         <section class="feature-block container">
             <div class="feature-row reveal">
                 <div>
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2zm0-6h2v4h-2z"/></svg>
-                    </div>
+                    <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2zm0-6h2v4h-2z"/></svg></div>
                     <h3>Transparência Radical</h3>
-                    <p>A confiança é nossa prioridade. Cada doação é rastreada e documentada com fotos e recibos entregues diretamente aos doadores e ao aniversariante.</p>
+                    <p>A confiança é nossa prioridade. Cada doação é rastreada e documentada com fotos e recibos entregues diretamente aos doadores.</p>
                 </div>
                 <div style="background: #F0EAE4; height: 300px; border-radius: var(--radius-md);">
                     <img src="https://placehold.co/600x400/F0EAE4/A98467?text=Foto+Entrega" alt="Transparência" style="width:100%; height:100%; object-fit:cover; border-radius: var(--radius-md); opacity: 0.8;">
@@ -473,20 +353,17 @@
                      <img src="https://placehold.co/600x400/E8D4C5/A98467?text=Logistica" alt="Logística" style="width:100%; height:100%; object-fit:cover; border-radius: var(--radius-md); opacity: 0.8;">
                 </div>
                 <div style="order: 1;">
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                    </div>
+                    <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
                     <h3>Curadoria Dona Antônia</h3>
-                    <p>Mais do que alimentos, entregamos cuidado. Produtos selecionados com o padrão de qualidade de quem atua há anos no mercado de cestas.</p>
+                    <p>Mais do que alimentos, entregamos cuidado. Produtos selecionados com o padrão de qualidade de quem atua há anos.</p>
                 </div>
             </div>
         </section>
 
         <!-- CTA Final -->
-        <!-- CORREÇÃO: Removido inline style que zerava o padding lateral -->
         <section class="container reveal" style="text-align: center; padding-bottom: 100px;">
             <div style="background: var(--text-display); color: #fff; padding: 60px 20px; border-radius: var(--radius-md);">
-                <h2 style="color: #fff; margin-bottom: 24px;">Inicie seu legado de solidariedade</h2>
+                <h2 style="color: #fff; margin-bottom: 24px;">Inicie seu legado</h2>
                 <p style="color: #ccc; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto;">
                     Fale com nossa equipe de concierge social e configure seu evento hoje mesmo.
                 </p>
@@ -495,27 +372,26 @@
                 </a>
             </div>
         </section>
-
     </main>
 
     <!-- Modal Eventos -->
     <div id="modal-events" class="modal-overlay">
         <div class="modal-content">
-            <div style="display:flex; justify-content:space-between; margin-bottom:30px;">
-                <h3 class="serif">Encontre um Evento</h3>
-                <button onclick="closeModal('modal-events')" style="font-size:1.5rem;">&times;</button>
+            <div style="display:flex; justify-content:space-between; margin-bottom:20px; position: sticky; top:0; background:#fff; z-index:10; padding-bottom:10px; border-bottom:1px solid #f0f0f0;">
+                <h3 class="serif" style="margin:0;">Encontre um Evento</h3>
+                <button onclick="closeModal('modal-events')" style="font-size:1.5rem; line-height:1;">&times;</button>
             </div>
-            <div id="modal-events-container" style="display:grid; gap:20px;">
-                <!-- JS injetará aqui -->
+            <div id="modal-events-container" style="display:flex; flex-direction:column;">
+                <!-- JS injetará aqui com estilo compacto -->
             </div>
         </div>
     </div>
 
     <!-- Modal Video -->
     <div id="modal-video-testimonial" class="modal-overlay">
-        <div class="modal-content" style="max-width: 800px; background: #000;">
-            <div style="text-align:right; margin-bottom:10px;">
-                <button onclick="closeVideoModal()" style="color:#fff; font-size:1.5rem;">&times;</button>
+        <div class="modal-content" style="max-width: 800px; background: #000; padding:0; overflow:hidden;">
+            <div style="text-align:right; position:absolute; top:10px; right:10px; z-index:10;">
+                <button onclick="closeVideoModal()" style="color:#fff; font-size:2rem; text-shadow:0 2px 4px rgba(0,0,0,0.5);">&times;</button>
             </div>
             <div style="position:relative; padding-bottom:56.25%; height:0;">
                 <iframe id="youtube-player" style="position:absolute; top:0; left:0; width:100%; height:100%;" frameborder="0" allowfullscreen></iframe>
@@ -532,48 +408,97 @@
 
     <!-- Scripts -->
     <script>
-        // --- Lógica de Dados e Renderização ---
-        const allEvents = [
+        /* --- DEFINIÇÃO DO FORMATO JSON (data/eventos.json) ---
+           
+           O arquivo JSON deve seguir exatamente este array de objetos.
+           Campos obrigatórios: id, name, date, goal, photo, link.
+           Campos opcionais: achieved (se encerrado), youtubeId (se tiver depoimento).
+           
+           [
+               {
+                   "id": "evt-001",
+                   "name": "Elisabet Aguirre",
+                   "date": "2025-12-13",
+                   "goal": 30,
+                   "photo": "https://url-da-imagem.com/foto.jpg",
+                   "link": "/evento/elisabet"
+               },
+               {
+                   "id": "evt-002",
+                   "name": "Noemi",
+                   "date": "2024-11-28",
+                   "goal": 20,
+                   "achieved": 26,
+                   "photo": "https://url-da-imagem.com/foto2.jpg",
+                   "link": "/evento/noemi",
+                   "youtubeId": "dQw4w9WgXcQ"
+               }
+           ]
+        */
+
+        // Simulação do Fetch de Dados
+        const mockData = [
             { 
-                name: "Elisabet Aguirre", 
-                date: "2025-12-13", 
-                goal: 30, 
-                photo: "https://placehold.co/150x150/A98467/ffffff?text=EA", 
-                link: "#" 
+                id: "1", name: "Elisabet Aguirre", date: "2025-12-13", goal: 30, 
+                photo: "https://placehold.co/150x150/A98467/ffffff?text=EA", link: "#" 
             },
             { 
-                name: "Noemi", 
-                date: "2025-11-28", 
-                goal: 20,
-                achieved: 26, 
-                photo: "https://placehold.co/150x150/E8D4C5/2C2825?text=NO", 
-                link: "#",
-                youtubeId: "dQw4w9WgXcQ" // Exemplo ID
-            }
+                id: "2", name: "Noemi", date: "2025-11-28", goal: 20, achieved: 26, 
+                photo: "https://placehold.co/150x150/E8D4C5/2C2825?text=NO", link: "#", youtubeId: "dQw4w9WgXcQ"
+            },
+            { 
+                id: "3", name: "João Silva", date: "2023-01-01", goal: 10, achieved: 10, 
+                photo: "https://placehold.co/150x150/cccccc/ffffff?text=JS", link: "#"
+            } // Este evento antigo não deve aparecer
         ];
 
+        let activeEvents = [];
         let displayedCount = 0;
-        const itemsPerPage = 3; // Mostrar 3 por vez para ficar mais limpo
+        const itemsPerPage = 3; 
+
+        // Filtra eventos que encerraram há mais de 60 dias
+        function filterValidEvents(events) {
+            const today = new Date();
+            today.setHours(0,0,0,0);
+            
+            return events.filter(evt => {
+                const eventDate = new Date(evt.date);
+                // Data limite = Data do evento + 60 dias
+                const limitDate = new Date(eventDate);
+                limitDate.setDate(limitDate.getDate() + 60);
+                
+                // Se hoje for maior que a data limite, o evento expirou da lista
+                return today <= limitDate;
+            });
+        }
+
+        async function initEvents() {
+            // Em produção: const response = await fetch('data/eventos.json');
+            // const data = await response.json();
+            const data = mockData; // Usando mock por enquanto
+            
+            activeEvents = filterValidEvents(data);
+            
+            // Renderiza inicial
+            loadMoreEvents();
+        }
 
         function checkStatus(eventDateString) {
             const eventDate = new Date(eventDateString);
             const today = new Date();
-            // Adiciona tolerância de 3 dias
             const toleranceDate = new Date(eventDate);
-            toleranceDate.setDate(eventDate.getDate() + 3);
-            
+            toleranceDate.setDate(eventDate.getDate() + 3); // Tolerância de 3 dias ativo após data
             today.setHours(0,0,0,0);
             toleranceDate.setHours(0,0,0,0);
-            
             return today <= toleranceDate ? 'active' : 'expired';
         }
 
         function formatDate(dateString) {
             const date = new Date(dateString);
-            // Formatação mais elegante "13 dez 2025"
             return date.toLocaleDateString('pt-BR', { day: 'numeric', month: 'short', year: 'numeric' });
         }
 
+        // Gera HTML normal (para a página principal)
         function createEventCardHTML(event) {
             const status = checkStatus(event.date);
             const isExpired = status === 'expired';
@@ -607,12 +532,37 @@
             `;
         }
 
-        // --- Gerenciamento de UI ---
+        // Gera HTML compacto (para o modal mobile)
+        function createCompactEventCardHTML(event) {
+            const status = checkStatus(event.date);
+            const isExpired = status === 'expired';
+            
+            let actionBtn = '';
+            
+            if (!isExpired) {
+                actionBtn = `<a href="${event.link}" class="btn-sm">Doar</a>`;
+            } else if (event.youtubeId) {
+                actionBtn = `<button onclick="openVideoModal('${event.youtubeId}')" class="btn-sm btn-outline" style="padding:4px 10px;">▶</button>`;
+            }
+
+            return `
+                <div class="event-card-compact">
+                    <img src="${event.photo}" alt="${event.name}" class="event-photo">
+                    <div style="flex:1;">
+                        <h4>${event.name}</h4>
+                        <div class="event-meta" style="margin:0; color:var(--text-muted); font-size:0.8rem;">
+                            ${formatDate(event.date)} ${isExpired ? '• Finalizado' : ''}
+                        </div>
+                    </div>
+                    <div>${actionBtn}</div>
+                </div>
+            `;
+        }
         
         function loadMoreEvents() {
             const container = document.getElementById('page-events-container');
             const btn = document.getElementById('btn-load-more');
-            const nextBatch = allEvents.slice(displayedCount, displayedCount + itemsPerPage);
+            const nextBatch = activeEvents.slice(displayedCount, displayedCount + itemsPerPage);
             
             if (nextBatch.length === 0 && displayedCount === 0) {
                 container.innerHTML = '<p class="text-center" style="grid-column:1/-1; color:var(--text-muted)">Nenhum evento ativo no momento.</p>';
@@ -625,7 +575,7 @@
             });
 
             displayedCount += nextBatch.length;
-            if (displayedCount >= allEvents.length) {
+            if (displayedCount >= activeEvents.length) {
                 btn.style.display = 'none';
             }
         }
@@ -634,19 +584,17 @@
             const container = document.getElementById('modal-events-container');
             container.innerHTML = '';
             
-            // Ordenar: Ativos primeiro
-            const sorted = [...allEvents].sort((a, b) => {
+            const sorted = [...activeEvents].sort((a, b) => {
                 const sA = checkStatus(a.date);
                 const sB = checkStatus(b.date);
                 return sA === 'active' ? -1 : 1;
             });
 
             sorted.forEach(evt => {
-                container.innerHTML += createEventCardHTML(evt);
+                container.innerHTML += createCompactEventCardHTML(evt);
             });
         }
 
-        // --- Modals ---
         function openModal() {
             renderEventsInModal();
             document.getElementById('modal-events').classList.add('active');
@@ -669,15 +617,12 @@
             }
         }
 
-        // --- Animation on Scroll (Intersection Observer) ---
         document.addEventListener('DOMContentLoaded', () => {
-            loadMoreEvents();
+            initEvents(); // Inicia com filtro de data
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                    }
+                    if (entry.isIntersecting) entry.target.classList.add('active');
                 });
             }, { threshold: 0.1 });
 
