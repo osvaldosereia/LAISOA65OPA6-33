@@ -1,0 +1,47 @@
+[
+  {
+    "slug": "elizaber",
+    "title": "30 Anos da Elizaber",
+    "subtitle": "Aniversário Solidário",
+    "photo": "img/elizaber.png",
+    "story": "Não quero presentes materiais este ano. Quero causar impacto real.\n\nEscolhi o Lar São Vicente porque conheço o trabalho sério que realizam. Minha meta é garantir alimentação para 30 famílias.",
+    "goal": 30,
+    "current": 12,
+    "beneficiary": {
+      "name": "Lar São Vicente",
+      "img": "img/lar-sao-vicente.png"
+    },
+    "price_unit": 89.90,
+    "video_id": "dQw4w9WgXcQ"
+  },
+  {
+    "slug": "jumar",
+    "title": "Jumar Faz 45",
+    "subtitle": "Comemorando a Vida",
+    "photo": "img/jumar.png",
+    "story": "A melhor forma de agradecer por mais um ano é ajudando quem precisa.\n\nConfio na Dona Antônia há 8 anos e sei da qualidade das cestas. Convido todos os amigos a participarem dessa corrente do bem.",
+    "goal": 20,
+    "current": 18,
+    "beneficiary": {
+      "name": "Instituto Esperança",
+      "img": "img/inst-esperanca.png"
+    },
+    "price_unit": 89.90,
+    "video_id": null
+  },
+  {
+    "slug": "maria",
+    "title": "Maria Helena 60 Anos",
+    "subtitle": "Gratidão e Solidariedade",
+    "photo": "img/maria-helena.png",
+    "story": "Chegar aos 60 anos com saúde é uma bênção.\n\nPara celebrar, quero abençoar a vida de outras pessoas. Todo o valor arrecadado será revertido em cestas básicas para as famílias atendidas pela minha paróquia.",
+    "goal": 50,
+    "current": 5,
+    "beneficiary": {
+      "name": "Paróquia São José",
+      "img": "img/paroquia-sao-jose.png"
+    },
+    "price_unit": 89.90,
+    "video_id": "M7lc1UVf-VE"
+  }
+]
