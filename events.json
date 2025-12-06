@@ -1,10 +1,11 @@
 [
   {
-    "slug": "elizaber",
+    "slug": "elisabet",
+    "status": "active",
     "title": "70 Anos da Elisabet",
     "subtitle": "Aniversário Solidário",
     "event_date": "01/10/2025",
-    "end_date": "2025-11-18",
+    "end_date": "18/11/2025",
     "photo": "img/elisabet.png",
     "story": "A vida já me presenteou com o que há de mais valioso: minha família, meus filhos, amigos, saúde, paz e alegria. Meu coração transborda gratidão a Deus e a todos vocês que fazem parte da minha história.\n\nComo forma de agradecer por tantas bênçãos, convido vocês a uma missão especial: vamos juntos transformar essa gratidão em solidariedade e ajudar dezenas de famílias que precisam. Obrigada por estarem comigo nessa!",
     "goal": 30,
@@ -18,36 +19,20 @@
   },
   {
     "slug": "noemi",
+    "status": "closed",
     "title": "Noemi faz 70",
     "subtitle": "Comemorando a Vida",
-    "event_date": "20/11/2025",
-    "end_date": "2025-11-23",
+    "event_date": "15/10/2025",
+    "end_date": "31/10/2025",
     "photo": "img/noemi.png",
     "story": "A melhor forma de agradecer por mais um ano é ajudando quem precisa.\n\nConfio na Dona Antônia há 8 anos e sei da qualidade das cestas. Convido todos os amigos a participarem dessa corrente.",
     "goal": 20,
-    "current": 18,
+    "current": 26,
     "beneficiary": {
       "name": "Instituto Esperança",
       "img": "img/inst-esperanca.png"
     },
-    "price_unit": 89.90,
-    "video_id": null
-  },
-  {
-    "slug": "antigo",
-    "title": "Evento Encerrado Exemplo",
-    "subtitle": "Este já acabou",
-    "event_date": "01/01/2024",
-    "end_date": "2024-01-04",
-    "photo": "img/maria-helena.png",
-    "story": "Exemplo de evento antigo para testar o bloqueio.",
-    "goal": 50,
-    "current": 50,
-    "beneficiary": {
-      "name": "Paróquia São José",
-      "img": "img/paroquia-sao-jose.png"
-    },
-    "price_unit": 89.90,
+    "price_unit": 85.00,
     "video_id": null
   }
 ]
