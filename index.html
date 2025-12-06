@@ -113,9 +113,19 @@
             background: #fff; padding: 20px; border-radius: var(--radius-md); 
             display: flex; align-items: center; gap: 16px; border: 1px solid transparent; cursor: pointer;
             box-shadow: 0 2px 15px rgba(0,0,0,0.03); transition: var(--transition);
+            position: relative;
         }
         .event-card:hover { border-color: var(--success); transform: translateY(-3px); }
         .event-photo { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; }
+
+        /* Estilo para eventos encerrados no card */
+        .event-card.expired { opacity: 0.7; filter: grayscale(100%); pointer-events: auto; }
+        .status-badge {
+            font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+            padding: 4px 10px; border-radius: 4px;
+        }
+        .badge-active { color: var(--success); background: #eefdf5; }
+        .badge-closed { color: #888; background: #eee; }
 
         .cta-footer-section { background: var(--text-display); color: #fff; padding: 60px 0; margin-top: 40px; border-radius: 24px 24px 0 0; }
         
@@ -148,6 +158,12 @@
             cursor: pointer;
         }
         .btn-video:hover { background: #f9f9f9; border-color: #cc0000; transform: translateY(-2px); }
+
+        /* Aviso de Encerrado na página interna */
+        .closed-notice {
+            background: #f0f0f0; color: #666; padding: 20px; border-radius: 12px;
+            text-align: center; font-weight: 600; margin-top: 20px; border: 1px solid #ddd;
+        }
 
         /* MODAL GERAL (Checkout, Video, Contato) */
         .modal-overlay {
@@ -363,6 +379,11 @@
                     <div class="event-header">
                         <img id="pg-photo" src="" class="event-img-lg" onerror="this.src='https://placehold.co/150x150?text=Foto'">
                         <h1 id="pg-title" style="font-size:1.8rem; margin-bottom:8px;">...</h1>
+                        
+                        <!-- Status e Data do Evento -->
+                        <div style="font-size: 0.9rem; color: #777; margin-bottom: 8px;">
+                            <span id="pg-date">...</span>
+                        </div>
                         <p id="pg-subtitle" style="color:#777;">...</p>
                         
                         <div class="ben-tag">
@@ -393,11 +414,11 @@
                         <div style="height:10px; background:#e0e0e0; border-radius:10px; overflow:hidden;">
                             <div id="pg-bar" style="height:100%; background:var(--success); width:0%;"></div>
                         </div>
-                        <p style="text-align:center; font-size:0.85rem; margin-top:12px; color:#888;">Ajude a bater a meta!</p>
+                        <p id="pg-progress-text" style="text-align:center; font-size:0.85rem; margin-top:12px; color:#888;">Ajude a bater a meta!</p>
                     </div>
 
                     <!-- Botão Presentear (Abre o Modal) -->
-                    <div style="text-align:center;">
+                    <div id="donation-section" style="text-align:center;">
                         <p style="text-transform:uppercase; font-size:0.8rem; font-weight:700; color:#999; margin-bottom:12px;">Cesta Básica Completa</p>
                         
                         <img src="https://placehold.co/400x300/FDFBF7/A98467?text=Foto+Cesta+Basica" alt="Cesta Básica Dona Antônia" class="cesta-img">
@@ -408,6 +429,14 @@
                             Presentear Agora
                         </button>
                     </div>
+
+                    <!-- Aviso de Encerrado -->
+                    <div id="closed-section" class="closed-notice" style="display:none;">
+                        <i class="ph-fill ph-check-circle" style="font-size: 2rem; color: var(--success); margin-bottom: 10px; display: block;"></i>
+                        Campanha Encerrada!<br>
+                        <span style="font-weight: 400; font-size: 0.9rem;">Obrigado a todos que participaram.</span>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -514,11 +543,22 @@
                 // Renderização dos cards da Home
                 eventsData.forEach(ev => {
                     const pct = Math.round((ev.current / ev.goal) * 100);
+                    const expired = checkExpired(ev.end_date);
+                    
+                    const statusHtml = expired 
+                        ? `<span class="status-badge badge-closed">Encerrado</span>`
+                        : `<span class="status-badge badge-active">Ativo</span>`;
+
+                    const cardClass = expired ? 'event-card expired' : 'event-card';
+
                     container.innerHTML += `
-                        <div class="event-card" onclick="openPage('${ev.slug}')">
+                        <div class="${cardClass}" onclick="openPage('${ev.slug}')">
                             <img src="${ev.photo}" class="event-photo" onerror="this.src='https://placehold.co/70x70?text=Foto'">
                             <div style="flex:1;">
-                                <h4 style="font-size:1rem; margin-bottom:4px;">${ev.title}</h4>
+                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                                    <h4 style="font-size:1rem; margin:0;">${ev.title}</h4>
+                                    ${statusHtml}
+                                </div>
                                 <div style="font-size:0.8rem; color:#888;">${ev.current}/${ev.goal} cestas</div>
                                 <div style="height:4px; background:#f0f0f0; border-radius:4px; margin-top:6px; overflow:hidden;">
                                     <div style="width:${pct}%; height:100%; background:var(--success);"></div>
@@ -540,9 +580,23 @@
 
             } catch (err) {
                 console.error("Falha na inicialização:", err);
-                // Fallback amigável caso o JSON falhe (ex: rodando local sem servidor)
                 document.getElementById('events-container').innerHTML = '<p class="text-center">Erro ao carregar eventos. Verifique a conexão.</p>';
             }
+        }
+
+        // Função para checar se a data de encerramento já passou
+        function checkExpired(endDateString) {
+            if(!endDateString) return false;
+            // endDateString deve ser YYYY-MM-DD
+            // Criamos data atual zerando horas para comparação justa
+            const now = new Date();
+            now.setHours(0,0,0,0);
+            
+            // Ajustamos a data de fim para o fim do dia (ou apenas compara o dia)
+            const end = new Date(endDateString);
+            end.setHours(23,59,59,999); // Expira no final do dia especificado
+
+            return now > end;
         }
 
         // Roteamento
@@ -570,10 +624,12 @@
 
         function renderEventView(ev) {
             currentEventSlug = ev.slug;
+            const expired = checkExpired(ev.end_date);
             
             document.getElementById('pg-photo').src = ev.photo;
             document.getElementById('pg-title').innerText = ev.title;
             document.getElementById('pg-subtitle').innerText = ev.subtitle;
+            document.getElementById('pg-date').innerText = `Data do Evento: ${ev.event_date}`;
             document.getElementById('pg-story').innerText = ev.story;
             document.getElementById('pg-ben-name').innerText = ev.beneficiary.name;
             document.getElementById('pg-ben-img').src = ev.beneficiary.img;
@@ -588,6 +644,21 @@
                 btnVideo.onclick = () => openVideo(ev.video_id);
             } else {
                 btnVideo.style.display = 'none';
+            }
+
+            // Lógica de Evento Encerrado
+            const donateSection = document.getElementById('donation-section');
+            const closedSection = document.getElementById('closed-section');
+            const progressText = document.getElementById('pg-progress-text');
+
+            if(expired) {
+                donateSection.style.display = 'none';
+                closedSection.style.display = 'block';
+                progressText.innerText = "Meta finalizada.";
+            } else {
+                donateSection.style.display = 'block';
+                closedSection.style.display = 'none';
+                progressText.innerText = "Ajude a bater a meta!";
             }
 
             document.getElementById('home-view').classList.add('hidden');
