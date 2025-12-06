@@ -584,19 +584,34 @@
             }
         }
 
-        // Função para checar se a data de encerramento já passou
+        // ===============================================
+        // CORREÇÃO AQUI: Lógica de Data Robusta
+        // ===============================================
         function checkExpired(endDateString) {
+            // Se não tiver data, não expirou
             if(!endDateString) return false;
-            // endDateString deve ser YYYY-MM-DD
-            // Criamos data atual zerando horas para comparação justa
-            const now = new Date();
-            now.setHours(0,0,0,0);
-            
-            // Ajustamos a data de fim para o fim do dia (ou apenas compara o dia)
-            const end = new Date(endDateString);
-            end.setHours(23,59,59,999); // Expira no final do dia especificado
 
-            return now > end;
+            // Divide a string (esperado YYYY-MM-DD)
+            // Isso evita a conversão automática para UTC que o "new Date(string)" faz
+            const parts = endDateString.split('-'); 
+            
+            // Se a data não estiver no formato certo, retorna falso por segurança
+            if(parts.length !== 3) return false;
+
+            const year = parseInt(parts[0]);
+            const month = parseInt(parts[1]) - 1; // Meses em JS começam em 0 (Jan) até 11 (Dez)
+            const day = parseInt(parts[2]);
+
+            // Cria a data no fuso horário LOCAL do navegador do usuário
+            const endDate = new Date(year, month, day);
+
+            // Define o fim do dia (23:59:59.999)
+            endDate.setHours(23, 59, 59, 999);
+
+            const now = new Date();
+
+            // Retorna verdadeiro se AGORA for maior que o FIM do dia do evento
+            return now > endDate;
         }
 
         // Roteamento
