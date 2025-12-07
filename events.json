@@ -30,5 +30,33 @@
         "message": "Feliz aniversário querida! Que Deus abençoe."
       }
     ]
+  },
+  {
+    "slug": "osvaldo-47",
+    "status": "active",
+    "title": "47 Anos do Osvaldo",
+    "subtitle": "Celebrando a Vida",
+    "event_date": "10/01/2026",
+    "end_date": "05/01/2026",
+    "photo": "img/osvaldo.jpg",
+    "story": "Chegar aos 47 anos é um marco de maturidade e reflexão. Olho para trás e vejo o quanto fui abençoado com saúde, amigos leais e uma família maravilhosa. A gratidão que sinto hoje é imensa e não caberia apenas em palavras.\n\nPor isso, neste aniversário, decidi fazer algo diferente. Em vez de presentes, gostaria de contar com o apoio de vocês para levar esperança e alimento para quem mais precisa. Escolhi a ONG Fome e Frio para receber todo o nosso carinho em forma de cestas básicas. Conto com vocês para celebrarmos a vida ajudando o próximo!",
+    "goal": 50,
+    "current": 12,
+    "beneficiary": {
+      "name": "ONG Fome e Frio",
+      "img": "img/ong-fome-frio.png"
+    },
+    "price_unit": 85.00,
+    "video_id": "",
+    "messages": [
+      {
+        "name": "Carlos Eduardo",
+        "message": "Grande Osvaldo! Iniciativa nobre, meu amigo. Já fiz minha parte."
+      },
+      {
+        "name": "Ricardo Gomes",
+        "message": "Parabéns, Osvaldo! Que Deus te dê em dobro. Tamo junto nessa!"
+      }
+    ]
   }
 ]
