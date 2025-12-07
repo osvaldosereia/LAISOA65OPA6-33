@@ -157,6 +157,7 @@
         }
         .btn-link-sm:hover { background: rgba(169, 132, 103, 0.12); color: var(--primary-dark); }
         
+        /* Botão Ligar (Rodapé) - Discreto */
         .btn-save-contact {
             display: inline-flex; align-items: center; justify-content: center;
             width: 24px; height: 24px; font-size: 0.9rem;
@@ -206,11 +207,11 @@
 
         /* AJUSTES MOBILE ESPECÍFICOS PARA O TÍTULO */
         @media (max-width: 580px) {
-            .hero h1 br { display: none; } /* Remove quebra forçada */
+            .hero h1 br { display: none; } 
             .hero h1 span { 
-                display: block; /* Força nova linha */
-                margin-top: 8px; /* Espaço sutil */
-                font-size: 0.9em; /* Levemente menor que a primeira linha */
+                display: block; 
+                margin-top: 8px; 
+                font-size: 0.9em; 
             }
         }
         
@@ -231,7 +232,7 @@
         }
         
         .step-card { 
-            background: var(--bg-surface); padding: 32px; /* Reduzido */
+            background: var(--bg-surface); padding: 32px; 
             border-radius: var(--radius-lg); 
             border: 1px solid rgba(0,0,0,0.03); 
             transition: var(--transition); 
@@ -257,10 +258,28 @@
         .step-card h3 { font-size: 1.15rem; margin-bottom: 8px; }
         .step-card p { font-size: 0.9rem; color: var(--text-body); line-height: 1.6; margin-bottom: 0; }
 
-        /* Estilos Específicos para o Passo 7 (Cesta) */
-        .step-card.basket-preview { align-items: center; text-align: center; }
-        .step-cesta-img { width: 120px; height: auto; margin-bottom: 12px; border-radius: 8px; }
-        .step-price { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--success); font-weight: 700; margin-bottom: 12px; }
+        /* Estilos Específicos para o Passo 7 (Cesta) - MELHORADO */
+        .step-card.basket-preview { 
+            align-items: center; text-align: center; 
+            border: 1px solid rgba(169, 132, 103, 0.1); /* Destaque sutil */
+        }
+        .step-cesta-wrapper {
+            width: 100%; max-width: 180px; margin: 0 auto 16px;
+            position: relative; cursor: zoom-in;
+            border-radius: 12px; overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease;
+        }
+        .step-cesta-wrapper:hover { transform: scale(1.03); }
+        .step-cesta-img { width: 100%; height: auto; display: block; }
+        
+        .step-price { 
+            font-family: 'DM Sans', sans-serif; /* Fonte mais moderna/discreta */
+            font-size: 1.4rem; /* Reduzido */
+            color: var(--text-display); 
+            font-weight: 700; 
+            margin-bottom: 12px; 
+        }
 
         /* Estilos Específicos para o Passo 8 (Pagamento) */
         .payment-icons { display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
@@ -345,7 +364,6 @@
             background: radial-gradient(circle, rgba(169, 132, 103, 0.15) 0%, transparent 70%);
             pointer-events: none;
         }
-        /* Correção das fontes do Banner CTA */
         .cta-footer-section h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); }
         .cta-footer-section p { font-size: 0.95rem; }
 
@@ -385,7 +403,13 @@
         }
         .modal-overlay.active .modal-box { transform: scale(1); }
 
-        /* Ajustes Modal Checkout para não estourar */
+        /* Modal de Imagem (Zoom) */
+        .modal-box.image-zoom-box {
+            max-width: 600px; background: transparent; box-shadow: none; padding: 0;
+        }
+        .zoom-img { width: 100%; height: auto; border-radius: 12px; box-shadow: var(--shadow-lg); }
+
+        /* Ajustes Modal Checkout */
         .modal-event-header {
             display: flex; align-items: center; gap: 12px;
             background: var(--bg-subtle); padding: 12px;
@@ -393,7 +417,6 @@
             text-align: left; border: 1px solid rgba(0,0,0,0.03);
             overflow: hidden; 
         }
-        /* Foto fixa pequena no checkout */
         .chk-photo-sm {
             width: 50px; height: 50px; min-width: 50px; 
             border-radius: 50%; object-fit: cover; 
@@ -423,7 +446,18 @@
         }
         .form-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(169, 132, 103, 0.1); }
 
-        /* Responsividade Geral */
+        /* Lista de Itens (Modal) - Clean & Organizado */
+        .items-list-container { text-align: left; padding: 0 8px; }
+        .items-list-ul { list-style: none; padding: 0; margin: 0; }
+        .items-list-ul li {
+            padding: 10px 0; border-bottom: 1px solid #f0f0f0;
+            font-size: 0.95rem; color: var(--text-body);
+            display: flex; align-items: center; gap: 10px;
+        }
+        .items-list-ul li:last-child { border-bottom: none; }
+        .items-list-ul li i { color: var(--success); font-size: 1.1rem; }
+
+        /* Responsividade */
         @media (max-width: 768px) {
             .grid-steps { grid-template-columns: 1fr; gap: 20px; } 
             .auth-grid, .footer-grid, .faq-grid { grid-template-columns: 1fr; gap: 32px; text-align: center; }
@@ -436,7 +470,7 @@
             .modal-event-header { margin-top: 0; }
             .event-img-lg { width: 110px; height: 110px; }
             .chk-info h4 { max-width: 160px; font-size: 0.95rem; } 
-            .faq-grid { text-align: left; } /* Mantém FAQ alinhado a esquerda mesmo no mobile */
+            .faq-grid { text-align: left; }
         }
     </style>
 </head>
@@ -474,7 +508,6 @@
             <section class="container section-py" style="padding-top:10px;">
                 <div class="text-center reveal">
                     <h2 style="font-size: 1.75rem;">É Bem Simples</h2>
-                    <p style="color: var(--text-muted); font-size: 0.95rem;">Veja como funciona a nossa plataforma.</p>
                 </div>
                 
                 <div class="grid-steps reveal">
@@ -518,11 +551,15 @@
                         <p>As cestas básicas são suas, são os presentes de seus convidados, nós entregamos onde você indicar. Caso não tenha nós temos algumas sugestões.</p>
                     </div>
                     
-                    <!-- Step 7: Modelo da Cesta -->
+                    <!-- Step 7: Modelo da Cesta (Melhorado) -->
                     <div class="step-card basket-preview">
                         <div class="step-icon"><i class="ph-duotone ph-shopping-bag-open"></i></div>
                         <h3>7. Modelo Sugerido</h3>
-                        <img src="img/cesta-basica-cuiaba-varzea-grande-economica.jpg" alt="Foto Cesta" class="step-cesta-img" onerror="this.src='https://placehold.co/120x100/FDFBF7/A98467?text=Cesta'">
+                        
+                        <div class="step-cesta-wrapper" onclick="openImageZoom('img/cesta-basica-cuiaba-varzea-grande-economica.jpg')" title="Clique para ampliar">
+                            <img src="img/cesta-basica-cuiaba-varzea-grande-economica.jpg" alt="Foto Cesta" class="step-cesta-img" onerror="this.src='https://placehold.co/400x300/FDFBF7/A98467?text=Ver+Foto'">
+                        </div>
+                        
                         <div class="step-price">R$ 85,00</div>
                         <button onclick="openItemsModal()" class="btn-link-sm" style="margin: 0; background: var(--success-bg); color: var(--success);">
                             <i class="ph-bold ph-list-dashes"></i> Ver Itens da Cesta
@@ -596,7 +633,7 @@
                         <div class="guarantee-card">
                             <i class="ph-duotone ph-shield-check" style="font-size: 2.5rem; color: var(--success); margin-bottom: 16px;"></i>
                             <h4 style="margin-bottom:8px; font-size:1.2rem;">Garantia de Entrega</h4>
-                            <p style="font-size:0.9rem; color:var(--text-body);">Auditamos cada doação. Entregamos apenas para parceiros sérios e documentamos todo o processo.</p>
+                            <p style="font-size:0.9rem; color:var(--text-body);">Os nossos parceiros de igrejas e ongs são de confiança e possuem trabalhos sociais reconhecidos.</p>
                         </div>
                     </div>
                 </div>
@@ -607,7 +644,6 @@
                 <div class="container">
                     <div class="text-center reveal" style="margin-bottom:32px;">
                         <h2>Modelos de sites</h2>
-                        <p style="font-size:0.9rem; color: var(--text-muted);">Veja quem está transformando aniversário em doação hoje.</p>
                     </div>
                     <div id="events-container" class="grid-3 reveal"></div>
                 </div>
@@ -618,7 +654,7 @@
                 <div class="cta-footer-section text-center">
                     <h2 style="color:#fff; margin-bottom:8px;">Me mande um oi</h2>
                     <p style="color: rgba(255,255,255,0.9); font-size: 1rem; margin-bottom: 20px;">Meu nome é Osvaldo e estou à disposição.</p>
-                    <a href="https://wa.me/5565998150975" target="_blank" class="btn" style="background:#fff; color:var(--text-display); box-shadow: 0 5px 20px rgba(0,0,0,0.08);">
+                    <a href="https://wa.me/5565998150975?text=Ol%C3%A1%20Osvaldo,%20vi%20o%20site%20Presente%20Social%20e%20gostaria%20de%20conversar." target="_blank" class="btn" style="background:#fff; color:var(--text-display); box-shadow: 0 5px 20px rgba(0,0,0,0.08);">
                         <i class="ph-bold ph-whatsapp-logo"></i> Falar no WhatsApp
                     </a>
                 </div>
@@ -630,7 +666,7 @@
                     <div style="text-align: left;">
                         <img src="img/logo-cesta-basica-dona-antonia.png" alt="Logo Pequena" class="footer-logo" onerror="this.src='https://placehold.co/80x80/A98467/fff?text=DA'">
                         <h4 style="color:var(--text-display); margin-bottom:12px;">Cestas Básicas Dona Antônia</h4>
-                        <p style="max-width: 300px; font-size: 0.9rem;">Levando alimentos de qualidade para a mesa de quem precisa em Cuiabá e Várzea Grande.</p>
+                        <p style="max-width: 300px; font-size: 0.9rem;">8 anos de dedicação, amor no que faz e muito trabalho.</p>
                         
                         <a href="https://instagram.com/cestabasicadonaantonia" target="_blank" class="social-link" style="margin-top: 20px;">
                             <i class="ph-bold ph-instagram-logo"></i>@super.cestas.dona.antonia
@@ -640,9 +676,9 @@
                         <h4 style="color:var(--text-display); margin-bottom:20px;">Contato & Endereço</h4>
                         <p style="margin-bottom:10px;">
                             <i class="ph-fill ph-phone" style="margin-right:8px; color:var(--primary)"></i> (65) 99815-0975 
-                            <!-- BOTÃO SALVAR CONTATO -->
-                            <button onclick="saveContact()" class="btn-save-contact" title="Salvar Contato na Agenda">
-                                <i class="ph-bold ph-user-plus"></i>
+                            <!-- BOTÃO LIGAR DIRETAMENTE -->
+                            <button onclick="window.location.href='tel:5565998150975'" class="btn-save-contact" title="Ligar Agora">
+                                <i class="ph-bold ph-phone-call"></i>
                             </button>
                         </p>
                         <p style="margin-bottom:10px;">
@@ -724,7 +760,7 @@
                             <i class="ph-bold ph-list-dashes"></i> Ver Itens da Cesta
                         </button>
 
-                        <h2 style="color:var(--success); font-size:2.4rem; margin-bottom:20px;">R$ 85,00</h2>
+                        <h2 style="color:var(--success); font-size:1.8rem; margin-bottom:20px;">R$ 85,00</h2>
                         
                         <button onclick="openCheckout()" class="btn" style="background:var(--success); color:#fff; width:100%; padding:16px; font-size:1.05rem; box-shadow: 0 5px 20px rgba(112, 141, 129, 0.2);">
                             Presentear Agora
@@ -795,7 +831,7 @@
         </div>
     </div>
 
-    <!-- ITEMS LIST MODAL -->
+    <!-- ITEMS LIST MODAL (Formatado) -->
     <div id="items-modal" class="modal-overlay">
         <div class="modal-box">
             <button onclick="closeModal('items-modal')" style="position:absolute; top:20px; right:20px; font-size:1.2rem; color:#999;">&times;</button>
@@ -803,8 +839,8 @@
             <h3 class="serif" style="margin-bottom:8px;">Itens da Cesta</h3>
             <p style="margin-bottom:20px; color:var(--text-muted); font-size:0.9rem;">Produtos de qualidade Dona Antônia</p>
 
-            <div class="items-list">
-                <ul>
+            <div class="items-list-container">
+                <ul class="items-list-ul">
                   <li><i class="ph-fill ph-check-circle"></i> 5kg Arroz</li>
                   <li><i class="ph-fill ph-check-circle"></i> 2kg Açúcar Cristal</li>
                   <li><i class="ph-fill ph-check-circle"></i> 1un Óleo de Soja 900ml</li>
@@ -822,7 +858,7 @@
                 </ul>
             </div>
 
-            <button onclick="closeModal('items-modal')" class="btn" style="width:100%; background:var(--primary); color:#fff;">
+            <button onclick="closeModal('items-modal')" class="btn" style="width:100%; background:var(--primary); color:#fff; margin-top: 24px;">
                 Fechar
             </button>
         </div>
@@ -835,6 +871,14 @@
             <div class="video-container">
                 <iframe id="youtube-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
+        </div>
+    </div>
+
+    <!-- IMAGE ZOOM MODAL -->
+    <div id="image-modal" class="modal-overlay" onclick="closeImageZoom()">
+        <div class="modal-box image-zoom-box" onclick="event.stopPropagation()">
+            <img id="img-zoom" src="" class="zoom-img">
+            <button onclick="closeImageZoom()" style="position:absolute; top:10px; right:10px; font-size:2rem; color:#fff; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index:10; background:none; border:none; cursor:pointer;">&times;</button>
         </div>
     </div>
 
@@ -1042,6 +1086,13 @@
         }
         function openItemsModal() {
             document.getElementById('items-modal').classList.add('active');
+        }
+        function openImageZoom(src) {
+            document.getElementById('img-zoom').src = src;
+            document.getElementById('image-modal').classList.add('active');
+        }
+        function closeImageZoom() {
+            document.getElementById('image-modal').classList.remove('active');
         }
         function closeModal(id) {
             document.getElementById(id).classList.remove('active');
