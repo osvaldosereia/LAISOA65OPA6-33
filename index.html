@@ -819,7 +819,7 @@
         </div>
     </main>
 
-    <!-- CHECKOUT MODAL -->
+    <!-- CHECKOUT MODAL MODIFICADO -->
     <div id="checkout-modal" class="modal-overlay">
         <div class="modal-box">
             <button onclick="closeModal('checkout-modal')" style="position:absolute; top:20px; right:20px; font-size:1.2rem; color:#999;">&times;</button>
@@ -832,21 +832,10 @@
                 </div>
             </div>
 
-            <h3 class="serif" style="font-size:1.3rem; margin-bottom: 6px;">Quantas cestas?</h3>
-            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px;">Selecione a quantidade do seu presente:</p>
-
-            <div class="qty-selector">
-                <button class="qty-btn selected" onclick="setQty(1)">1</button>
-                <button class="qty-btn" onclick="setQty(2)">2</button>
-                <button class="qty-btn" onclick="setQty(3)">3</button>
-                <button class="qty-btn" onclick="setQty(4)">4</button>
-                <button class="qty-btn" onclick="setQty(5)">5</button>
-            </div>
-
-            <div class="price-display">
-                <div id="chk-total" class="price-total">R$ 89,90</div>
-                <div id="chk-installment" class="price-installments">1x de R$ 89,90</div>
-            </div>
+            <h3 class="serif" style="font-size:1.3rem; margin-bottom: 6px;">Confirmar Doação</h3>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:20px;">
+                Ao clicar abaixo, você será redirecionado para o WhatsApp para combinar a entrega ou pagamento da sua doação.
+            </p>
 
             <form id="donation-form" onsubmit="submitDonation(event)">
                 <div class="form-group">
@@ -864,8 +853,8 @@
                     <textarea id="donor-msg" class="form-input" rows="2" placeholder="Deixe um recado carinhoso..."></textarea>
                 </div>
 
-                <button type="submit" class="btn" style="width:100%; background:var(--primary); color:#fff; margin-top:16px;">
-                    Ir para Pagamento <i class="ph-bold ph-lock-key"></i>
+                <button type="submit" class="btn" style="width:100%; background:var(--primary); color:#fff; margin-top:20px;">
+                    Combinar Doação no WhatsApp <i class="ph-bold ph-whatsapp-logo"></i>
                 </button>
             </form>
         </div>
@@ -950,7 +939,7 @@
     <script>
         let eventsData = [];
         let currentEventSlug = null;
-        let selectedQty = 1;
+        // let selectedQty = 1; // Removido pois não é mais usado
 
         async function init() {
             try {
@@ -1117,14 +1106,14 @@
             document.getElementById('contact-modal').classList.add('active');
         }
         function openCheckout() {
-            selectedQty = 1;
+            // selectedQty = 1; // Removido
             const ev = eventsData.find(e => e.slug === currentEventSlug);
             if(ev) {
                 document.getElementById('chk-photo').src = ev.photo;
                 document.getElementById('chk-title').innerText = ev.title;
                 document.getElementById('chk-date').innerText = 'Data: ' + ev.event_date;
             }
-            updateCheckoutUI();
+            // updateCheckoutUI(); // Removido pois não há mais UI dinâmica de preço
             document.getElementById('checkout-modal').classList.add('active');
         }
         function openItemsModal() {
@@ -1151,31 +1140,7 @@
             document.getElementById('youtube-iframe').src = "";
         }
 
-        function setQty(qty) {
-            selectedQty = qty;
-            updateCheckoutUI();
-        }
-
-        function updateCheckoutUI() {
-            document.querySelectorAll('.qty-btn').forEach(btn => {
-                btn.classList.remove('selected');
-                if(parseInt(btn.innerText) === selectedQty) btn.classList.add('selected');
-            });
-
-            const ev = eventsData.find(e => e.slug === currentEventSlug);
-            if(ev) {
-                const total = ev.price_unit * selectedQty;
-                
-                document.getElementById('chk-total').innerText = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-                
-                if (total > 100) {
-                    const parcVal = total / 3;
-                    document.getElementById('chk-installment').innerText = `ou 3x de ${parcVal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} sem juros`;
-                } else {
-                     document.getElementById('chk-installment').innerText = `à vista`;
-                }
-            }
-        }
+        // Funções setQty e updateCheckoutUI foram removidas pois não são mais necessárias
 
         function submitDonation(e) {
             e.preventDefault();
@@ -1184,13 +1149,13 @@
             const name = document.getElementById('donor-name').value;
             const phone = document.getElementById('donor-phone').value;
             const msg = document.getElementById('donor-msg').value;
-            const total = (ev.price_unit * selectedQty).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            // Cálculo de total removido
 
             let text = `Olá! Quero participar do evento *${ev.title}*\n\n`;
             text += `*Nome:* ${name}\n`;
             text += `*Telefone:* ${phone}\n`;
-            text += `*Doação:* ${selectedQty} Cesta(s)\n`;
-            text += `*Total:* ${total}\n`;
+            text += `Gostaria de fazer a doação de uma Cesta Básica.\n`;
+            
             if(msg) text += `*Mensagem:* ${msg}`;
 
             const url = `https://wa.me/5565998150975?text=${encodeURIComponent(text)}`;
