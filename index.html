@@ -86,6 +86,11 @@
         /* Reset & Base */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
+        /* ADICIONADO: Rolagem Suave para toda a página */
+        html {
+            scroll-behavior: smooth;
+        }
+
         body { 
             font-family: 'DM Sans', sans-serif; 
             background-color: var(--bg-body); 
@@ -512,11 +517,12 @@
                 
                 <div class="grid-steps reveal">
                     <!-- Step 1 -->
+                    <!-- MODIFICADO: Atualizei o link para apontar para a seção de modelos -->
                     <div class="step-card">
                         <div class="step-icon"><i class="ph-duotone ph-desktop"></i></div>
                         <h3>1. Por onde começar?</h3>
                         <p>Entre em contato. Nós vamos criar uma página personalizada do seu evento aqui no nosso site.</p>
-                        <a href="#" onclick="return false;" class="link-subtle">
+                        <a href="#modelos-sites" class="link-subtle">
                             Ver modelo de site <i class="ph-bold ph-arrow-right"></i>
                         </a>
                     </div>
@@ -644,7 +650,8 @@
             </section>
 
             <!-- Modelos de Sites -->
-            <section class="section-py" style="background: var(--bg-subtle);">
+            <!-- MODIFICADO: Adicionei o ID 'modelos-sites' aqui -->
+            <section id="modelos-sites" class="section-py" style="background: var(--bg-subtle);">
                 <div class="container">
                     <div class="text-center reveal" style="margin-bottom:32px;">
                         <h2>Modelos de sites</h2>
@@ -972,6 +979,9 @@
         function handleRouting() {
             const slug = window.location.hash.replace('#', '');
             if (slug && eventsData.length > 0) {
+                // Verificamos se o slug NÃO É a nossa âncora de rolagem
+                if(slug === 'modelos-sites') return;
+
                 const ev = eventsData.find(e => e.slug === slug);
                 if(ev) renderEventView(ev);
                 else renderHomeView();
