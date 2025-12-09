@@ -193,7 +193,7 @@
         .ev-photo { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; }
 
         /* =========================================
-           VIEW DE DETALHES (SPA) - MANTIDA MAS LIMPA
+           VIEW DE DETALHES (SPA)
            ========================================= */
         #event-view { padding-top: 20px; display: none; }
         #event-view.active { display: block; }
@@ -219,6 +219,44 @@
             margin-top: 10px;
         }
 
+        /* ESTILO NOVO PARA MENSAGENS */
+        .message-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--radius);
+            margin-bottom: 16px;
+            border: 1px solid rgba(0,0,0,0.03);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            position: relative;
+        }
+        .message-card::before {
+            content: '“';
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: rgba(169, 132, 103, 0.1);
+            line-height: 1;
+        }
+        .msg-author {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .msg-text {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--text-body);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
         /* MODAIS SIMPLIFICADOS */
         .modal-overlay {
             position: fixed; inset: 0; background: rgba(0,0,0,0.6); 
@@ -226,7 +264,7 @@
             backdrop-filter: blur(4px);
         }
         .modal-overlay.active { display: flex; }
-        .modal-box { background: #fff; padding: 30px; border-radius: 16px; max-width: 400px; width: 90%; position: relative; }
+        .modal-box { background: #fff; padding: 30px; border-radius: 16px; max-width: 400px; width: 90%; position: relative; max-height: 90vh; overflow-y: auto;}
         .close-modal { position: absolute; top: 15px; right: 15px; font-size: 1.5rem; color: #999; }
         
         .input-group { margin-bottom: 15px; text-align: left; }
@@ -243,17 +281,37 @@
             color: var(--primary-dark);
         }
 
+        /* Estilo para Info no Modal de Contato */
+        .contact-info-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+            text-align: left;
+            font-size: 0.9rem;
+            color: var(--text-body);
+            border-bottom: 1px solid #f5f5f5;
+            padding-bottom: 12px;
+        }
+        .contact-info-row:last-child { border-bottom: none; }
+        .contact-info-row i {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+
     </style>
 </head>
 <body>
 
-    <!-- CABEÇALHO SIMPLES -->
+    <!-- CABEÇALHO COM AÇÃO -->
     <header style="padding: 20px 0; background: #fff; border-bottom: 1px solid #eee;">
         <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
             <div class="serif" style="font-size: 1.2rem; font-weight:700;">Presente<span style="color:var(--primary)">.Social</span></div>
-            <a href="https://wa.me/5565998150975" class="hero-btn" style="padding: 8px 16px; font-size: 0.8rem;">
+            <!-- Atualizado para abrir o modal -->
+            <button onclick="openContactModal()" class="hero-btn" style="padding: 8px 16px; font-size: 0.8rem;">
                 Contato
-            </a>
+            </button>
         </div>
     </header>
 
@@ -401,10 +459,10 @@
                     </div>
                 </div>
 
-                <!-- Mensagens (Simplificado) -->
+                <!-- Mensagens (VISUAL MELHORADO) -->
                 <div id="messages-container" style="display:none; margin-bottom: 60px;">
-                    <h3 class="serif text-center" style="margin-bottom: 20px;">Mensagens de Carinho</h3>
-                    <div id="messages-list" style="display: grid; gap: 10px;"></div>
+                    <h3 class="serif text-center" style="margin-bottom: 30px;">Mensagens de Carinho</h3>
+                    <div id="messages-list" style="display: grid; gap: 16px;"></div>
                 </div>
             </div>
         </div>
@@ -429,6 +487,63 @@
                 <li>✓ 1un Bolacha Recheada</li>
                 <li>✓ 1un Suco em Pó</li>
             </ul>
+        </div>
+    </div>
+
+    <!-- NOVO MODAL DE CONTATO -->
+    <div id="contact-modal" class="modal-overlay" onclick="if(event.target === this) this.classList.remove('active')">
+        <div class="modal-box text-center">
+            <button class="close-modal" onclick="document.getElementById('contact-modal').classList.remove('active')">&times;</button>
+            
+            <img src="img/logo-cesta-basica-dona-antonia.png" 
+                 class="logo-img" 
+                 style="width: 80px; height: 80px; border-width: 2px; margin-bottom: 16px;"
+                 alt="Logo"
+                 onerror="this.src='https://placehold.co/80x80?text=DA'">
+
+            <h3 class="serif" style="margin-bottom: 20px;">Fale Conosco</h3>
+
+            <!-- Informações -->
+            <div class="contact-info-row">
+                <i class="ph-fill ph-phone"></i>
+                <div>
+                    <strong>Atendimento</strong><br>
+                    (65) 99815-0975
+                </div>
+            </div>
+            
+            <div class="contact-info-row">
+                <i class="ph-fill ph-briefcase"></i>
+                <div>
+                    <strong>Escritório</strong><br>
+                    Edifício The Point Smart Business, Sala 605-A
+                </div>
+            </div>
+
+            <div class="contact-info-row">
+                <i class="ph-fill ph-factory"></i>
+                <div>
+                    <strong>Produção</strong><br>
+                    Rua Trinta, 200, Bairro N. S. Aparecida
+                </div>
+            </div>
+
+            <div style="margin-top: 24px;">
+                <a href="https://wa.me/5565998150975" target="_blank" class="hero-btn" style="background: #25D366; width: 100%; justify-content: center; margin-bottom: 12px;">
+                    <i class="ph-bold ph-whatsapp-logo"></i> Chamar no WhatsApp
+                </a>
+                
+                <a href="tel:5565998150975" class="hero-btn" style="background: #eee; color: var(--text-main); width: 100%; justify-content: center; box-shadow: none;">
+                    <i class="ph-bold ph-phone"></i> Ligar Agora
+                </a>
+            </div>
+
+            <!-- Redes Sociais no Modal -->
+            <div class="social-links" style="margin-top: 20px; justify-content: center; display: flex; gap: 20px;">
+                <a href="https://instagram.com/super.cestas.dona.antonia" target="_blank"><i class="ph-bold ph-instagram-logo"></i></a>
+                <a href="https://www.facebook.com/supercestasdonaantonia" target="_blank"><i class="ph-bold ph-facebook-logo"></i></a>
+            </div>
+
         </div>
     </div>
 
@@ -547,15 +662,19 @@
                 document.getElementById('closed-area').style.display = 'none';
             }
             
-            // Mensagens
+            // Mensagens (COM NOVO LAYOUT VISUAL)
             const msgList = document.getElementById('messages-list');
             msgList.innerHTML = '';
             if(ev.messages && ev.messages.length > 0) {
                 document.getElementById('messages-container').style.display = 'block';
                 ev.messages.forEach(m => {
                     msgList.innerHTML += `
-                        <div style="background:#f9f9f9; padding:10px; border-radius:8px; font-size:0.9rem;">
-                            <strong>${m.name}:</strong> <i>"${m.message}"</i>
+                        <div class="message-card">
+                            <div class="msg-author">
+                                <i class="ph-fill ph-heart" style="color:var(--primary);"></i>
+                                ${m.name}
+                            </div>
+                            <div class="msg-text">"${m.message}"</div>
                         </div>
                     `;
                 });
@@ -568,6 +687,7 @@
         /* UI ACTIONS */
         function openItemsModal() { document.getElementById('items-modal').classList.add('active'); }
         function openCheckout() { document.getElementById('checkout-modal').classList.add('active'); }
+        function openContactModal() { document.getElementById('contact-modal').classList.add('active'); }
 
         function submitDonation(e) {
             e.preventDefault();
