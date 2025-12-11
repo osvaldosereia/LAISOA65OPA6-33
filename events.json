@@ -53,7 +53,7 @@
   },
   {
     "slug": "padrinhos-magicos",
-    "status": "closed",
+    "status": "active",
     "title": "Padrinhos Mágicos",
     "subtitle": "A verdadeira mágica é transformar a vida de quem precisa",
     "event_date": "30/01/2026",
@@ -74,12 +74,8 @@
     "video_id": "",
     "messages": [
       {
-        "name": "Carlos Eduardo",
-        "message": "Grande Osvaldo! Iniciativa nobre, meu amigo. Já fiz minha parte."
-      },
-      {
-        "name": "Ricardo Gomes",
-        "message": "Parabéns, Osvaldo! Que Deus te dê em dobro. Tamo junto nessa!"
+        "name": "Osvaldo Sereia",
+        "message": "Um trabalho de muito amor e cuidado Participem."
       }
     ]
   }
