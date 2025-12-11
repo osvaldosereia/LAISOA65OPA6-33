@@ -12,7 +12,7 @@
     "theme": "female",
 
     "story": "A vida já me presenteou com o que há de mais valioso: minha família, meus filhos, amigos, saúde, paz e alegria. Meu coração transborda gratidão a Deus e a todos vocês que fazem parte da minha história.\n\nComo forma de agradecer por tantas bênçãos, convido vocês a uma missão especial: vamos juntos transformar essa gratidão em solidariedade e quem precisa. Obrigada por estarem comigo nessa!",
-    "goal": 20,
+    "goal": 30,
     "current": 13,
     "beneficiary": {
       "name": "Lar dos Idósos",
@@ -63,7 +63,7 @@
     "layout": "square",
     "theme": "neutral",
 
-    "story": "Bem-vindo à nossa missão. Somos uma associação sem fins lucrativos dedicada a levar alimento e esperança para quem mais necessita. De famílias inteiras a jovens e idosos, além do apoio a outras ONGs, nosso trabalho é garantir que a solidariedade chegue à mesa de todos. Mas não fazemos isso sozinhos. Para combater a fome, precisamos de você. Ao doar uma cesta básica, você se torna um Padrinho Mágico: alguém capaz de transformar a realidade de uma família com um simples gesto de amor. Está pronto para aceitar essa missão?",
+    "story": "Bem-vindo à nossa missão. Somos uma associação sem fins lucrativos dedicada a levar alimento e esperança para quem mais necessita.\n\nDe famílias inteiras a jovens e idosos, além do apoio a outras ONGs, nosso trabalho é garantir que a solidariedade chegue à mesa de todos. Mas não fazemos isso sozinhos. Para combater a fome, precisamos de você.\n\nAo doar uma cesta básica, você se torna um Padrinho Mágico: alguém capaz de transformar a realidade de uma família com um simples gesto de amor.\n\n<b>Está pronto para aceitar essa missão?</b>",
     "goal": 20,
     "current": 5,
     "beneficiary": {
