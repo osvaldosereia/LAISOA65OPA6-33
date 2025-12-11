@@ -63,7 +63,7 @@
     "layout": "square",
     "theme": "neutral",
 
-    "story": "Bem-vindo à nossa missão. Somos uma associação sem fins lucrativos dedicada a levar alimento e esperança para quem mais necessita.\n\nDe famílias inteiras a jovens e idosos, além do apoio a outras ONGs, nosso trabalho é garantir que a solidariedade chegue à mesa de todos. Mas não fazemos isso sozinhos. Para combater a fome, precisamos de você.\n\nAo doar uma cesta básica, você se torna um Padrinho Mágico: alguém capaz de transformar a realidade de uma família com um simples gesto de amor.\n\n<b>Está pronto para aceitar essa missão?</b>",
+    "story": "Bem-vindo à nossa missão. Somos uma associação sem fins lucrativos dedicada a levar alimento e esperança para quem mais necessita.\n\nDe famílias inteiras a jovens e idosos, além do apoio a outras ONGs, nosso trabalho é garantir que a solidariedade chegue à mesa de todos. Mas não fazemos isso sozinhos. Para combater a fome, precisamos de você.\n\nAo doar uma cesta básica, você se torna um Padrinho Mágico: alguém capaz de transformar a realidade de uma família com um simples gesto de amor.\n\nEstá pronto para aceitar essa missão?",
     "goal": 20,
     "current": 5,
     "beneficiary": {
