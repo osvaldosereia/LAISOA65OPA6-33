@@ -13,7 +13,7 @@
 
     "story": "A vida já me presenteou com o que há de mais valioso: minha família, meus filhos, amigos, saúde, paz e alegria. Meu coração transborda gratidão a Deus e a todos vocês que fazem parte da minha história.\n\nComo forma de agradecer por tantas bênçãos, convido vocês a uma missão especial: vamos juntos transformar essa gratidão em solidariedade e quem precisa. Obrigada por estarem comigo nessa!",
     "goal": 20,
-    "current": 19,
+    "current": 24,
     "beneficiary": {
       "name": "Lar dos Idósos",
       "img": "img/lar-sao-vicente.png"
@@ -76,6 +76,18 @@
         {
         "name": "Rosina Sereia",
         "message": "Te desejo muita paz, saúde e muitas alegrias nesse dia tão especial!."
+      },
+      {
+        "name": "Cecília",
+        "message": "Te desejo muita paz, saúde e muitas alegrias nesse dia tão especial!."
+      },
+       {
+        "name": "Bi e Dione",
+        "message": "Parabéns Tia. Que seja um novo ano lindo e incrível como a senhora. Te amamos muito"
+      },
+        {
+        "name": "Zé Airton",
+        "message": "Feliz nova idade, parabéns."
       }
     ]
   },
