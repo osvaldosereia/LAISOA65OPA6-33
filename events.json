@@ -1,32 +1,22 @@
 [
-   {
-    "slug": "Thaís Agueiro",
-    "status": "active",
-    "title": "31 Anos de Thaís Agueiro",
-    "subtitle": "Aniversário Solidário",
-    "event_date": "14/12/2025",
-    "end_date": "17/12/2025",
-    "photo": "img/elisabet.png",
-    
-    "layout": "round",
-    "theme": "female",
-
-    "story": "Janeiro chegou!
-      
-      O mês das metas traçadas, do projeto verão e de novas resoluções.
-Mas para mim é ainda melhor por ser meu aniversário hehe. E eu AMO aniversários . 
-E este ano, o Espírito Santo me orientou transformar essa data em uma missão: 31 anos = 31 cestas básicas para famílias que precisam ❤️
-
-Dia 20 de janeiro eu completo 31 estações e em forma de agradecimento à Deus pela vida e por tudo que Ele tem feito nela, quero poder transbordar para além de mim. E nada melhor que ter família e amigos ao meu lado nesta missão. 
-Então, durante todo o mês de janeiro estarei arrecadando alimentos para doações.
-
-Deixo aqui então o meu convite para participarem comigo desta missão, onde teremos a oportunidade de impactar a vida de 31 famílias ❤️🙌",
-    "goal": 20,
-    "current": 24,
-    "beneficiary": {
-      "name": "Lar dos Idósos",
-      "img": "img/lar-sao-vicente.png"
-    },
+  {
+  "slug": "thais-agueiro",
+  "status": "active",
+  "title": "31 Anos de Thaís Agueiro",
+  "subtitle": "Aniversário Solidário",
+  "event_date": "14/12/2025",
+  "end_date": "17/12/2025",
+  "photo": "img/elisabet.png",
+  "layout": "round",
+  "theme": "female",
+  "story": "Janeiro chegou! O mês das metas traçadas, do projeto verão e de novas resoluções. Mas para mim é ainda melhor por ser meu aniversário hehe. E eu AMO aniversários.\n\nE este ano, o Espírito Santo me orientou transformar essa data em uma missão: 31 anos = 31 cestas básicas para famílias que precisam ❤️\n\nDia 20 de janeiro eu completo 31 estações e em forma de agradecimento à Deus pela vida e por tudo que Ele tem feito nela, quero poder transbordar para além de mim. E nada melhor que ter família e amigos ao meu lado nesta missão.\n\nEntão, durante todo o mês de janeiro estarei arrecadando alimentos para doações.\n\nDeixo aqui então o meu convite para participarem comigo desta missão, onde teremos a oportunidade de impactar a vida de 31 famílias ❤️🙌",
+  "goal": 20,
+  "current": 24,
+  "beneficiary": {
+    "name": "Lar dos Idosos",
+    "img": "img/lar-sao-vicente.png"
+  }
+},
     "price_unit": 85.00,
     "video_id": "",
     "messages": [
