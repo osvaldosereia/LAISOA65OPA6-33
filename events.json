@@ -1,147 +1,20 @@
 [
   {
-  "slug": "thais-agueiro",
-  "status": "active",
-  "title": "31 Anos de Thaís Agueiro",
-  "subtitle": "Aniversário Solidário",
-  "event_date": "14/12/2025",
-  "end_date": "17/12/2025",
-  "photo": "img/elisabet.png",
-  "layout": "round",
-  "theme": "female",
-  "story": "Janeiro chegou! O mês das metas traçadas, do projeto verão e de novas resoluções. Mas para mim é ainda melhor por ser meu aniversário hehe. E eu AMO aniversários.\n\nE este ano, o Espírito Santo me orientou transformar essa data em uma missão: 31 anos = 31 cestas básicas para famílias que precisam ❤️\n\nDia 20 de janeiro eu completo 31 estações e em forma de agradecimento à Deus pela vida e por tudo que Ele tem feito nela, quero poder transbordar para além de mim. E nada melhor que ter família e amigos ao meu lado nesta missão.\n\nEntão, durante todo o mês de janeiro estarei arrecadando alimentos para doações.\n\nDeixo aqui então o meu convite para participarem comigo desta missão, onde teremos a oportunidade de impactar a vida de 31 famílias ❤️🙌",
-  "goal": 20,
-  "current": 24,
-  "beneficiary": {
-    "name": "Lar dos Idosos",
-    "img": "img/lar-sao-vicente.png"
-  }
-},
-    "price_unit": 85.00,
-    "video_id": "",
-    "messages": [
-      {
-        "name": "Cida",
-        "message": "Parabéns Bebete... Que Jesus esteja sempre com você."
-      },
-      {
-    "slug": "elisabet",
+    "slug": "thais-agueiro",
     "status": "active",
-    "title": "73 Anos da Elisabet",
+    "title": "31 Anos de Thaís Agueiro",
     "subtitle": "Aniversário Solidário",
     "event_date": "14/12/2025",
     "end_date": "17/12/2025",
     "photo": "img/elisabet.png",
-    
     "layout": "round",
     "theme": "female",
-
-    "story": "A vida já me presenteou com o que há de mais valioso: minha família, meus filhos, amigos, saúde, paz e alegria. Meu coração transborda gratidão a Deus e a todos vocês que fazem parte da minha história.\n\nComo forma de agradecer por tantas bênçãos, convido vocês a uma missão especial: vamos juntos transformar essa gratidão em solidariedade e quem precisa. Obrigada por estarem comigo nessa!",
+    "story": "Janeiro chegou! O mês das metas traçadas, do projeto verão e de novas resoluções. Mas para mim é ainda melhor por ser meu aniversário hehe. E eu AMO aniversários.\n\nE este ano, o Espírito Santo me orientou transformar essa data em uma missão: 31 anos = 31 cestas básicas para famílias que precisam ❤️\n\nDia 20 de janeiro eu completo 31 estações e em forma de agradecimento à Deus pela vida e por tudo que Ele tem feito nela, quero poder transbordar para além de mim. E nada melhor que ter família e amigos ao meu lado nesta missão.\n\nEntão, durante todo o mês de janeiro estarei arrecadando alimentos para doações.\n\nDeixo aqui então o meu convite para participarem comigo desta missão, onde teremos a oportunidade de impactar a vida de 31 famílias ❤️🙌",
     "goal": 20,
     "current": 24,
     "beneficiary": {
-      "name": "Lar dos Idósos",
+      "name": "Lar dos Idosos",
       "img": "img/lar-sao-vicente.png"
-    },
-    "price_unit": 85.00,
-    "video_id": "",
-    "messages": [
-      {
-        "name": "Cida",
-        "message": "Parabéns Bebete... Que Jesus esteja sempre com você."
-      },
-      {
-        "name": "Erair Maria Aguirre ",
-        "message": "Muitas bênçãos a vc pela maravilhosa atitude. Paz e luz sempre!!!!!"
-      },
-       {
-        "name": "Eliana Aguirre ",
-        "message": "Parabéns Bete....q Deus a abençoe  sempre por tudo q vc é  é faz....admirável!! Amo vc"
-      },
-      {
-        "name": "Vitoria Aguirre Barion",
-        "message": "Feliz aniversário tia! Parabéns pelo lindo gesto."
-      },
-      {
-        "name": "Áliva",
-        "message": "Feliz novo ano Dinda! Que seja de muita luz, saúde e prosperidade! Amamos a senhora ❤️."
-      },
-      {
-        "name": "Fernanda Aguirre",
-        "message": "Que Jesus te proteja grandemente! Saúde e muitas felicidades!."
-      },
-       {
-        "name": "Eulália Aguirre",
-        "message": "Feliz Aniversário Bete! Muitas Bênçãos em sua vida."
-      },
-       {
-        "name": "Cristina Morais",
-        "message": " Parabéns, sogra! Que seu novo ciclo seja cheio de muitas realizações e felicidades❤️❤️."
-      },
-       {
-        "name": "Rita de Cássia",
-        "message": "Você é uma tia especial, dessas de coração enorme, que acolhe, cuida, aconselha e ama sem medidas. Que Deus retribua em bênçãos tudo o que você espalha de amor por onde passa. Que seu dia seja iluminado, cheio de paz, saúde, alegrias e muitos sorrisos. Que nunca lhe falte carinho, fé e motivos para celebrar a vida. Você é muito amada! 🌷✨."
-      },
-       {
-        "name": "Cacá",
-        "message": "Mãe, parabéns pelo seu dia! Que Deus te abençoe com muita saúde, paz e alegrias. Te amo."
-      },
-       {
-        "name": "Antonia Mariela",
-        "message": " Você é Mil."
-      },
-       {
-        "name": "Marcelo Cáceres",
-        "message": " Feliz Aniversário. Saúde e Prosperidade."
-      },
-{
-        "name": "Osvaldo Sereia",
-        "message": " Muitas alegrias na sua vida hoje e sempre."
-      },
-        {
-        "name": "Rosina Sereia",
-        "message": "Te desejo muita paz, saúde e muitas alegrias nesse dia tão especial!."
-      },
-      {
-        "name": "Cecília",
-        "message": "Muita Saúde, Paz e Prosperidade em sua vida."
-      },
-       {
-        "name": "Bi e Dione",
-        "message": "Parabéns Tia. Que seja um novo ano lindo e incrível como a senhora. Te amamos muito"
-      },
-        {
-        "name": "Zé Airton",
-        "message": "Feliz nova idade, parabéns."
-      }
-    ]
-  },
-  {
-    "slug": "padrinhos-magicos",
-    "status": "active",
-    "title": "Padrinhos Mágicos",
-    "subtitle": "A verdadeira mágica é transformar a vida de quem precisa",
-    "event_date": "31/12/2025",
-    "end_date": "31/12/2025",
-    "photo": "img/padrinho.png",
-
-    "layout": "square",
-    "theme": "neutral",
-
-    "story": "Bem-vindo à nossa missão. Somos uma associação sem fins lucrativos dedicada a levar alimento e esperança para quem mais necessita.\n\nDe famílias inteiras a jovens e idosos, além do apoio a outras ONGs, nosso trabalho é garantir que a solidariedade chegue à mesa de todos. Mas não fazemos isso sozinhos. Para combater a fome, precisamos de você.\n\nAo doar uma cesta básica, você se torna um Padrinho Mágico: alguém capaz de transformar a realidade de uma família com um simples gesto de amor.\n\nEstá pronto para aceitar essa missão?",
-    "goal": 10,
-    "current": 5,
-    "beneficiary": {
-      "name": "ONG Fome e Frio",
-      "img": "img/ong-fome-frio.png"
-    },
-    "price_unit": 85.00,
-    "video_id": "",
-    "messages": [
-      {
-        "name": "Osvaldo Sereia",
-        "message": "Um trabalho de muito amor e cuidado. Participem."
-      }
-    ]
+    }
   }
 ]
