@@ -865,7 +865,8 @@
             const ev = eventsData.find(e => e.slug === currentEventSlug);
             if (!ev) return;
 
-            const url = window.location.href;
+            // FIX: Monta a URL manualmente para garantir que o hash esteja correto e limpo
+            const url = `${window.location.origin}${window.location.pathname}#${ev.slug}`;
             const text = `Participe da campanha solidária: ${ev.title}. Veja mais aqui:`;
 
             if (navigator.share) {
@@ -875,6 +876,7 @@
                     url: url
                 }).catch(err => console.log('Erro ao compartilhar', err));
             } else {
+                // Fallback para WhatsApp caso o navegador não suporte Web Share API
                 const waUrl = `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`;
                 window.open(waUrl, '_blank');
             }
